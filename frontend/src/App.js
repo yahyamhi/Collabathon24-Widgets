@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Widget from './components/Widget';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -13,6 +14,9 @@ function App() {
     <div>
       <h1>Commerzbank Widget</h1>
       <p>{message}</p>
+
+      {/* Render the new Widget component */}
+      <Widget />
     </div>
   );
 }
