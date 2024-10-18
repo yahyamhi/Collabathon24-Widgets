@@ -117,6 +117,7 @@ The project uses environment variables to store configuration data. To use these
 PORT=5000
 DATABASE_URL=sqlite://database.sqlite
 ```
+For now copy paste .envSample and rename it to .env
 
 ## API Endpoints
 
