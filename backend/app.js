@@ -1,10 +1,8 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const config = require('./config/config');
 const cors = require('cors');
 const widgetRoutes = require('./routes/widget');
-
-// Initialize dotenv
-dotenv.config();
+const apiRoutes = require('./routes/apiRoutes');
 
 const app = express();
 app.use(cors());
@@ -15,10 +13,11 @@ app.get('/', (req, res) => {
   res.send('Commerzbank Widget API');
 });
 
-// Use widget routes
+// Use widget and API routes
 app.use('/', widgetRoutes);
+app.use('/api', apiRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = config.port || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
