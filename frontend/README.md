@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+# Commerzbank Widget Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements a widget for the Commerzbank website, built using **React** for the frontend and **Node.js** for the backend. The widget is integrated into either the Landing Page or Customer Cockpit page as specified.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Folder Structure](#folder-structure)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+- [Running the Project](#running-the-project)
+- [Environment Variables](#environment-variables)
+- [API Endpoints](#api-endpoints)
 
-### `npm start`
+## Folder Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+commerzbank-widget/
+│
+├── backend/                 # Node.js backend
+│   ├── app.js               # Main server file
+│   ├── config/              # Database and config
+│   ├── routes/              # API routes
+│   ├── database.sqlite      # SQLite database
+│   ├── .env                 # Environment variables
+│   └── package.json         # Node.js dependencies
+│
+├── frontend/                # React frontend
+│   ├── public/              # Public assets
+│   ├── src/                 # Frontend source code
+│   └── package.json         # React dependencies
+│
+└── README.md                # This README file
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **React**: Frontend library for building user interfaces.
+- **Node.js**: Backend runtime for executing JavaScript on the server.
+- **Express**: Web framework for Node.js.
+- **SQLite**: Lightweight database for the backend.
+- **dotenv**: Module to load environment variables.
+- **cors**: Middleware for handling cross-origin requests.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
 
-### `npm run build`
+Make sure you have the following installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Node.js**: v14.x or later
+- **npm**: v6.x or later
+- **SQLite**: Pre-installed on most systems (used for a lightweight database)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Setup Instructions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow these steps to set up and run the project locally:
 
-### `npm run eject`
+### 1. Clone the Repository
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone git@github.com:yahyamhi/Collabathon24-Widgets.git
+cd Collabathon24-Widgets
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Setup Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Navigate to the `backend/` folder and install the required dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd backend
+npm install
+```
 
-## Learn More
+### 3. Setup Frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Navigate to the `frontend/` folder and install the required dependencies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+cd ../frontend
+npm install
+```
 
-### Code Splitting
+## Running the Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You need to run both the **backend** and **frontend** servers.
 
-### Analyzing the Bundle Size
+### 1. Running the Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Navigate to the `backend/` folder and start the server:
 
-### Making a Progressive Web App
+```bash
+cd backend
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This will start the backend on `http://localhost:5000`.
 
-### Advanced Configuration
+### 2. Running the Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Navigate to the `frontend/` folder and start the React development server:
 
-### Deployment
+```bash
+cd ../frontend
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The frontend will run on `http://localhost:3000`.
 
-### `npm run build` fails to minify
+### 3. Accessing the Widget
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+After both servers are running, visit `http://localhost:3000` to view the widget on the Commerzbank page.
+
+## Environment Variables
+
+The project uses environment variables to store configuration data. To use these, create a `.env` file in the `backend/` folder and define your variables:
+
+```
+PORT=5000
+DATABASE_URL=sqlite://database.sqlite
+```
+
+## API Endpoints
+
+Here is a summary of the API endpoints available in this project:
+
+- `GET /widget-data`: Fetches data for the widget to display on the frontend.
+
+## Contributing
+
+If you'd like to contribute, feel free to fork the repository and submit a pull request with any improvements, bug fixes, or new features.
+
+## License
+
+This project is licensed under the MIT License. Feel free to use it as needed.
