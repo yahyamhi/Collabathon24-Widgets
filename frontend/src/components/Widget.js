@@ -1,16 +1,19 @@
-import React from "react";
-import useFetch from "../hooks/useFetch";
+import React from 'react';
+import useFetch from '../hooks/useFetch';
 
-const Widget = ({ endpoint }) => {
+const Widget = ({ endpoint, title }) => {
   const { data, loading, error } = useFetch(endpoint);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="widget-container">
-      <h2>Commerzbank Widget</h2>
-      {data ? <p>{data.message}</p> : <p>No data available</p>}
+      <h2>{title}</h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <p>{data ? data.message : 'No data available'}</p>
+      )}
     </div>
   );
 };
