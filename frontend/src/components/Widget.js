@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
+import useFetch from "../hooks/useFetch";
 
-const Widget = () => {
-  const [data, setData] = useState(null);
+const Widget = ({ endpoint }) => {
+  const { data, loading, error } = useFetch(endpoint);
 
-  useEffect(() => {
-    // Fetch data from backend
-    fetch('http://localhost:5000/widget-data')
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error('Error fetching widget data:', error));
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="widget-container">
       <h2>Commerzbank Widget</h2>
-      {data ? (
-        <div>
-          <p>{data.message}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      {data ? <p>{data.message}</p> : <p>No data available</p>}
     </div>
   );
 };
