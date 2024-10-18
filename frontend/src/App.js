@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Widget from './components/Widget';
+import React from 'react';
+import Dashboard from './components/Dashboard';
+import './App.css'; // Import if you have global styles
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:5000/')
-      .then((response) => response.text())
-      .then((data) => setMessage(data));
-  }, []);
-
   return (
-    <div>
-      <h1>Commerzbank Widget</h1>
-      <p>{message}</p>
-
-      {/* Render the new Widget component */}
-      <Widget />
+    <div className="App">
+      <Dashboard />
     </div>
   );
 }

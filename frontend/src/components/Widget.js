@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import './Widget.css'; // Import the CSS file for styling
 
-const Widget = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    // Fetch data from backend
-    fetch('http://localhost:5000/widget-data')
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error('Error fetching widget data:', error));
-  }, []);
-
+function Widget({ title, children, onClose }) {
   return (
-    <div className="widget-container">
-      <h2>Commerzbank Widget</h2>
-      {data ? (
-        <div>
-          <p>{data.message}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="widget">
+      <div className="widget-header">
+        <h3>{title}</h3>
+        <button className="widget-close-button" onClick={onClose}>
+          &times;
+        </button>
+      </div>
+      <div className="widget-content">{children}</div>
     </div>
   );
-};
+}
 
 export default Widget;

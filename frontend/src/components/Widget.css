@@ -1,0 +1,32 @@
+.widget {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  
+  .widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .widget-close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .widget:hover .widget-close-button {
+    opacity: 1;
+  }
+  
+  .widget-content {
+    margin-top: 10px;
+  }
+  
