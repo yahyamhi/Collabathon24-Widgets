@@ -1,0 +1,166 @@
+/* Standardized Widget Container */
+.widget-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Widget Hover Effect */
+.widget-container:hover:not(.widget-maximized) {
+  transform: scale(1.02); /* Only apply scale on hover if it's not maximized */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Widget Titles */
+.widget-container h2 {
+  color: #003366;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Widget Text */
+.widget-container p {
+  color: #333333;
+  font-size: 14px;
+}
+
+/* Widget Buttons Container */
+.widget-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+/* Transparent Button Styling */
+.widget-button {
+  background-color: rgba(255, 255, 255, 0.05); /* Light transparent background */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+  color: #0056a6; /* Icon color */
+  padding: 5px;
+  border-radius: 50%; /* Fully round button */
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;  /* Ensure round size */
+  height: 30px; /* Ensure round size */
+  transition: background-color 0.3s ease;
+}
+
+.widget-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker on hover */
+  color: #003366;
+}
+
+/* Info Button Styling (hover shows description) */
+.widget-info {
+  position: relative;
+}
+
+.widget-info:hover .widget-description {
+  display: block;
+}
+
+.widget-description {
+  margin-top: 10px;
+  background-color: #e9f5ff;
+  color: #003366;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Maximized Widget Style */
+.widget-maximized {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important; /* Ensure it stays centered */
+  width: 80%;
+  height: 80%;
+  z-index: 1000;
+  background-color: #ffffff;
+  overflow: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Widget close button for dynamic widget removal */
+.widget-close-button {
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widget-close-button:hover {
+  background-color: rgb(232, 4, 4); /* Light red on hover */
+}
+
+/* Scrollable Content (like Branch Finder results) */
+.scrollable-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Branch Item Styling for Branch Finder */
+.branch-item {
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.branch-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Dropdown styling for Branch Finder */
+.widget-container select {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Label styling for Branch Finder */
+.widget-container label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #003366;
+}
+
+/* Go button styling for Branch Finder */
+.go-button {
+  padding: 10px 15px;
+  margin: 10px;
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.go-button:hover {
+  background-color: #003366;
+}
