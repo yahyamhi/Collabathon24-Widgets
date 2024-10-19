@@ -1,4 +1,3 @@
-// Dashboard.js
 import React, { useState, useEffect } from 'react';
 import Widget from './Widget';
 import BranchFinderContent from './BranchFinderContent';
@@ -7,6 +6,7 @@ import CashFlowWidget from './CashFlowWidget'; // Import the CashFlowWidget
 import QuickTransferWidget from './QuickTransferWidget'; 
 import GenericWidgetContent from './GenericWidgetContent';
 import AccountSummaryWidgetContent from './AccountSummaryWidgetContent';
+import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget'; // Import the Supplier Payment Tracker Widget
 import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
 import { FaBell, FaEnvelope } from 'react-icons/fa';
@@ -16,6 +16,7 @@ function Dashboard() {
     { id: 'accountSummary', title: 'Account Summary', visible: true, description: 'Displays account balances and term deposits' },
     { id: 'quickTransfer', title: 'Quick Self Transfer', visible: true, description: 'Quickly transfer funds between accounts' },
     { id: 'currencyExchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
+    { id: 'supplierPayment', title: 'Supplier Payment Tracker', visible: true, description: 'Track payments to key suppliers and outstanding invoices' }, // Supplier Payment Tracker Widget
     { id: 'globalTrade', title: 'Global Trade', visible: true, description: 'Shows global trade insights' },
     { id: 'esgMarkets', title: 'ESG in Emerging Markets', visible: true, description: 'ESG trends and data' },
     { id: 'iso20022', title: 'ISO 20022', visible: true, description: 'Migration success and insights' },
@@ -309,10 +310,10 @@ function Dashboard() {
                           <CashFlowWidget refreshRate={refreshRate} />
                         ) : widget.id === 'accountSummary' ? (
                           <AccountSummaryWidgetContent endpoint="/api/account-summary" />
-                        ) : widget.id === 'cashFlow' ? (
-                          <CashFlowWidget />
                         ) : widget.id === 'quickTransfer' ? (
                           <QuickTransferWidget />
+                        ) : widget.id === 'supplierPayment' ? ( // Supplier Payment Tracker Widget
+                          <SupplierPaymentTrackerWidget />
                         ) : (
                           <GenericWidgetContent
                             endpoint={`/widget-data/${widget.id}`}
