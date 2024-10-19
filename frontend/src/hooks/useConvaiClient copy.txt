@@ -1,0 +1,136 @@
+import { useState, useEffect, useRef } from 'react';
+import { ConvaiClient } from 'convai-web-sdk';
+
+const apiKey = process.env.REACT_APP_CONVAI_API_KEY;
+const characterId = process.env.REACT_APP_CONVAI_CHARACTER_ID;
+
+console.log('API Key:', apiKey);
+console.log('Character ID:', characterId);
+
+const useConvaiClient = () => {
+  console.log('useConvaiClient is running');
+  const [userText, setUserText] = useState('');
+  const [npcText, setNpcText] = useState('');
+  const [keyPressed, setKeyPressed] = useState(false);
+  const [isTalking, setIsTalking] = useState(false);
+  const finalizedUserText = useRef('');
+  const npcTextRef = useRef('');
+  const facialData = useRef([]);
+  const [actionText, setActionText] = useState('');
+
+  const convaiClient = useRef(
+    new ConvaiClient({
+      apiKey: apiKey,
+      characterId: characterId,
+      enableAudio: true,
+      enableFacialData: true,
+      faceModel: 3,
+    })
+  );
+  
+
+  useEffect(() => {
+    console.log('useEffect is running');
+    convaiClient.current.setResponseCallback((response) => {
+      if (response.hasUserQuery()) {
+        const transcript = response.getUserQuery();
+        const isFinal = transcript.getIsFinal();
+        if (isFinal) {
+          finalizedUserText.current += ' ' + transcript.getTextData();
+          setUserText(finalizedUserText.current);
+        } else {
+          setUserText(finalizedUserText.current + ' ' + transcript.getTextData());
+        }
+      }
+
+      if (response.hasAudioResponse()) {
+        const audioResponse = response.getAudioResponse();
+        npcTextRef.current += ' ' + audioResponse.getTextData();
+        setNpcText(npcTextRef.current);
+
+        if (audioResponse?.getVisemesData()?.array[0]) {
+          let faceData = audioResponse.getVisemesData().array[0];
+          if (faceData[0] !== -2) {
+            facialData.current.push(faceData);
+          }
+        }
+      }
+
+      if (response.hasActionResponse()) {
+        let actionResponse = response.getActionResponse();
+        let parsedActions = actionResponse.getAction().trim().split('\n');
+        setActionText(parsedActions[0].split(', '));
+      }
+    });
+
+    convaiClient.current.onAudioPlay(() => {
+      setIsTalking(true);
+    });
+
+    convaiClient.current.onAudioStop(() => {
+      setIsTalking(false);
+    });
+  }, []);
+
+  const startAudioChunk = () => {
+    finalizedUserText.current = '';
+    npcTextRef.current = '';
+    setUserText('');
+    setNpcText('');
+    convaiClient.current.startAudioChunk();
+  };
+
+  const endAudioChunk = () => {
+    convaiClient.current.endAudioChunk();
+  };
+
+  // Integrate keydown/keyup handling here
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === 'KeyT' && !keyPressed) {
+        setKeyPressed(true);
+        startAudioChunk();
+      }
+    };
+
+    const handleKeyUp = (event) => {
+      if (event.code === 'KeyT' && keyPressed) {
+        setKeyPressed(false);
+        endAudioChunk();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [keyPressed, startAudioChunk, endAudioChunk]);
+
+  const sendTextChunk = (text) => {
+    finalizedUserText.current = '';
+    npcTextRef.current = '';
+    setNpcText('');
+    convaiClient.current.sendTextChunk(text);
+  };
+
+  return {
+    convaiClient: convaiClient.current,
+    userText,
+    setUserText,
+    npcText,
+    setNpcText,
+    keyPressed,
+    setKeyPressed,
+    isTalking,
+    startAudioChunk,
+    endAudioChunk,
+    sendTextChunk,
+    facialData,
+    actionText,
+  };
+};
+
+export default useConvaiClient;
