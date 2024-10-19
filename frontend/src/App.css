@@ -1,9 +1,47 @@
 /* General Styling */
 body {
+  margin: 0;
+  padding-top: 100px; /* Space for the fixed banner */
   font-family: Arial, sans-serif;
   background-color: #f0f2f5;
+}
+
+/* Styling for the fixed banner */
+.top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #002e3d;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure the banner stays on top */
+}
+
+/* Style for the logo in the banner */
+.logo {  
+  position: fixed;
+  top: 15px;
+  left: 20px; /* Adjusted to move it slightly to the right */
+  height: 40px;
+  margin-right: 15px;
+}
+
+
+/* Style for the banner text */
+.top-banner h1 {
+  font-size: 24px;
   margin: 0;
-  padding: 0;
+  color: white; /* Ensure the heading is white */
+}
+
+/* Main content of the application */
+.content {
+  text-align: center;
 }
 
 /* Container for the whole app */
@@ -117,4 +155,19 @@ body.large-font {
 .widget-container.medium-font p,
 .widget-container.large-font p {
   font-size: inherit;
+}
+
+/* Adjustments for mobile screens */
+@media only screen and (max-width: 600px) {
+  .top-banner h1 {
+    left : 0px;
+    font-size: 14px; /* Smaller font size for mobile */
+    padding: 10px 0; /* Adjust padding for smaller screens */
+    
+  }
+
+  .logo {
+    left: 10px; /* Move logo slightly more to the left on mobile */
+    height: 35px; /* Slightly smaller logo size */
+  }
 }
