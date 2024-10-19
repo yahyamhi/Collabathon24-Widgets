@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './Widget.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Widget = ({ title, description, onClose, children, onMaximize }) => {
   const [isMaximized, setIsMaximized] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false); // State to control inline notification
 
   const handleMaximize = () => {
     const newIsMaximized = !isMaximized;
@@ -23,10 +22,12 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
     const currentUrl = window.location.origin;
     const shareUrl = `${currentUrl}/widget/${title.toLowerCase().replace(/\s/g, '')}`;
     navigator.clipboard.writeText(shareUrl).then(() => {
-      toast.success("Widget link copied to clipboard!", {
-        position: "bottom-right", // Use position as a string
-        autoClose: 3000, // Closes after 3 seconds
-      });
+      setShowCopiedMessage(true); // Show inline message when link is copied
+
+      // Automatically hide the message after 3 seconds
+      setTimeout(() => {
+        setShowCopiedMessage(false);
+      }, 3000);
     });
   };
 
@@ -74,8 +75,13 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
           </button>
         )}
       </div>
-      {/* Toast container to display notifications */}
-      <ToastContainer />
+
+      {/* Inline notification for link copied */}
+      {showCopiedMessage && (
+        <div className="copy-notification">
+          {`${title} link copied to clipboard!`}
+        </div>
+      )}
     </div>
   );
 };

@@ -547,3 +547,11 @@
   color: #003366;
 }
 
+.copy-notification {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
