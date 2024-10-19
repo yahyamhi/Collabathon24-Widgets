@@ -9,3 +9,12 @@ exports.getBranches = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getCitiesAndStreets = async (req, res, next) => {
+  try {
+    const citiesAndStreets = await branchFinderService.getCitiesAndStreets();
+    res.json(citiesAndStreets);
+  } catch (error) {
+    next(error);
+  }
+};

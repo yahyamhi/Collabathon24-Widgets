@@ -1,0 +1,202 @@
+[
+    {
+        "id": "1",
+        "city": "Hamburg",
+        "street": "Mönckebergstraße",
+        "name": "Hamburg Central Branch",
+        "address": "Mönckebergstraße 7, 20095 Hamburg, Germany",
+        "phone": "040 123456-0",
+        "vault": true,
+        "cashgroup": true
+    },
+    {
+        "id": "2",
+        "city": "Hamburg",
+        "street": "Mönckebergstraße",
+        "name": "Hamburg West Branch",
+        "address": "Mönckebergstraße 20, 20095 Hamburg, Germany",
+        "phone": "040 234567-0",
+        "vault": false,
+        "cashgroup": false
+    },
+    {
+        "id": "3",
+        "city": "Hamburg",
+        "street": "Ida-Ehre-Platz",
+        "name": "Hamburg Ida-Ehre Branch",
+        "address": "Ida-Ehre-Platz 14, 20095 Hamburg, Germany",
+        "phone": "040 987654-0",
+        "vault": true,
+        "cashgroup": false
+    },
+    {
+        "id": "4",
+        "city": "Hamburg",
+        "street": "Ida-Ehre-Platz",
+        "name": "Hamburg Ida Central Branch",
+        "address": "Ida-Ehre-Platz 10, 20095 Hamburg, Germany",
+        "phone": "040 654321-0",
+        "vault": false,
+        "cashgroup": true
+    },
+    {
+        "id": "5",
+        "city": "Berlin",
+        "street": "Kurfürstendamm",
+        "name": "Berlin Kurfürstendamm Branch",
+        "address": "Kurfürstendamm 21, 10719 Berlin, Germany",
+        "phone": "030 7654321-0",
+        "vault": true,
+        "cashgroup": true
+    },
+    {
+        "id": "6",
+        "city": "Berlin",
+        "street": "Kurfürstendamm",
+        "name": "Berlin Central Branch",
+        "address": "Kurfürstendamm 45, 10719 Berlin, Germany",
+        "phone": "030 8765432-0",
+        "vault": true,
+        "cashgroup": false
+    },
+    {
+        "id": "7",
+        "city": "Berlin",
+        "street": "Alexanderplatz",
+        "name": "Berlin Alexanderplatz Branch",
+        "address": "Alexanderplatz 1, 10178 Berlin, Germany",
+        "phone": "030 1239874-0",
+        "vault": false,
+        "cashgroup": true
+    },
+    {
+        "id": "8",
+        "city": "Berlin",
+        "street": "Alexanderplatz",
+        "name": "Berlin East Branch",
+        "address": "Alexanderplatz 5, 10178 Berlin, Germany",
+        "phone": "030 2233445-0",
+        "vault": true,
+        "cashgroup": false
+    },
+    {
+        "id": "9",
+        "city": "Munich",
+        "street": "Marienplatz",
+        "name": "Munich Marienplatz Branch",
+        "address": "Marienplatz 15, 80331 Munich, Germany",
+        "phone": "089 654321-0",
+        "vault": true,
+        "cashgroup": true
+    },
+    {
+        "id": "10",
+        "city": "Munich",
+        "street": "Marienplatz",
+        "name": "Munich Central Branch",
+        "address": "Marienplatz 10, 80331 Munich, Germany",
+        "phone": "089 123456-0",
+        "vault": false,
+        "cashgroup": false
+    },
+    {
+        "id": "11",
+        "city": "Munich",
+        "street": "Leopoldstraße",
+        "name": "Munich Leopoldstraße Branch",
+        "address": "Leopoldstraße 48, 80802 Munich, Germany",
+        "phone": "089 765432-0",
+        "vault": true,
+        "cashgroup": true
+    },
+    {
+        "id": "12",
+        "city": "Munich",
+        "street": "Leopoldstraße",
+        "name": "Munich North Branch",
+        "address": "Leopoldstraße 12, 80802 Munich, Germany",
+        "phone": "089 876543-0",
+        "vault": false,
+        "cashgroup": false
+    },
+    {
+        "id": "13",
+        "city": "Frankfurt",
+        "street": "Zeil",
+        "name": "Frankfurt Zeil Branch",
+        "address": "Zeil 25, 60313 Frankfurt am Main, Germany",
+        "phone": "069 123456-0",
+        "vault": true,
+        "cashgroup": true
+    },
+    {
+        "id": "14",
+        "city": "Frankfurt",
+        "street": "Zeil",
+        "name": "Frankfurt Central Branch",
+        "address": "Zeil 15, 60313 Frankfurt am Main, Germany",
+        "phone": "069 7891011-0",
+        "vault": false,
+        "cashgroup": true
+    },
+    {
+        "id": "15",
+        "city": "Frankfurt",
+        "street": "Goetheplatz",
+        "name": "Frankfurt Goetheplatz Branch",
+        "address": "Goetheplatz 5, 60313 Frankfurt am Main, Germany",
+        "phone": "069 987654-0",
+        "vault": true,
+        "cashgroup": false
+    },
+    {
+        "id": "16",
+        "city": "Frankfurt",
+        "street": "Goetheplatz",
+        "name": "Frankfurt Goethe Central Branch",
+        "address": "Goetheplatz 9, 60313 Frankfurt am Main, Germany",
+        "phone": "069 567890-0",
+        "vault": false,
+        "cashgroup": true
+    },
+    {
+        "id": "17",
+        "city": "Cologne",
+        "street": "Schildergasse",
+        "name": "Cologne Schildergasse Branch",
+        "address": "Schildergasse 10, 50667 Cologne, Germany",
+        "phone": "0221 123456-0",
+        "vault": true,
+        "cashgroup": true
+    },
+    {
+        "id": "18",
+        "city": "Cologne",
+        "street": "Schildergasse",
+        "name": "Cologne Central Branch",
+        "address": "Schildergasse 30, 50667 Cologne, Germany",
+        "phone": "0221 987654-0",
+        "vault": false,
+        "cashgroup": true
+    },
+    {
+        "id": "19",
+        "city": "Cologne",
+        "street": "Neumarkt",
+        "name": "Cologne Neumarkt Branch",
+        "address": "Neumarkt 12, 50667 Cologne, Germany",
+        "phone": "0221 987654-0",
+        "vault": true,
+        "cashgroup": false
+    },
+    {
+        "id": "20",
+        "city": "Cologne",
+        "street": "Neumarkt",
+        "name": "Cologne Neumarkt Central Branch",
+        "address": "Neumarkt 20, 50667 Cologne, Germany",
+        "phone": "0221 223344-0",
+        "vault": false,
+        "cashgroup": true
+    }
+]
