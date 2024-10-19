@@ -164,3 +164,8 @@
 .go-button:hover {
   background-color: #003366;
 }
+
+.chart-container {
+  position: relative;
+  height: 300px;
+}
