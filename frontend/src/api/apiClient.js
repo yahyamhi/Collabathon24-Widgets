@@ -11,10 +11,10 @@ export const fetchData = (endpoint, options = {}) => {
       'Content-Type': 'application/json',
       ...(options.headers || {}),
     },
-    body: options.body ? JSON.stringify(options.body) : null,
+    body: options.body ? JSON.stringify(options.body) : null, // Stringify body for POST/PUT
   }).then((res) => {
     if (!res.ok) {
-      throw new Error('');
+      throw new Error('Error in response');
     }
     return res.json();
   });

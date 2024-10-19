@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '../api/apiClient'; // Import fetchData
 
-const useFetch = (endpoint, queryParams = {}, refreshRate = null) => {
+const useFetch = (endpoint, queryParams = {}, options = {}, refreshRate = null) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,12 +15,14 @@ const useFetch = (endpoint, queryParams = {}, refreshRate = null) => {
       if (!endpoint) return;
 
       const queryString = new URLSearchParams(queryParams).toString();
-      const fullUrl = queryString ? `${endpoint}?${queryString}` : endpoint;
+      const fullUrl = queryString && options.method !== 'POST' 
+                      ? `${endpoint}?${queryString}` 
+                      : endpoint;
 
       console.log('Fetching URL:', fullUrl); // For debugging
 
       setLoading(true);
-      fetchData(fullUrl)
+      fetchData(fullUrl, options)
         .then((data) => {
           if (!data) {
             throw new Error('No data returned from the API');
@@ -54,7 +56,7 @@ const useFetch = (endpoint, queryParams = {}, refreshRate = null) => {
       isMounted = false;
       if (intervalId) clearInterval(intervalId);
     };
-  }, [endpoint, JSON.stringify(queryParams), refreshRate]);
+  }, [endpoint, JSON.stringify(queryParams), JSON.stringify(options), refreshRate]);
 
   return { data, loading, error };
 };

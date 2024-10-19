@@ -1,43 +1,55 @@
 import React, { useState } from 'react';
 import useFetch from '../hooks/useFetch';
+import { fetchData } from '../api/apiClient'; // Use fetchData directly for POST
 import './Widget.css';
 
 const QuickTransferWidget = () => {
   const [fromAccountId, setFromAccountId] = useState('');
   const [toAccountId, setToAccountId] = useState('');
   const [amount, setAmount] = useState('');
-  const [transferOptions, setTransferOptions] = useState(null);
+  const [transferResult, setTransferResult] = useState(null);
+  const [transferError, setTransferError] = useState(null);
+  const [transferLoading, setTransferLoading] = useState(false);
 
   // Fetch account balances using useFetch (GET request)
   const { data: availableBalances, loading: balancesLoading, error: balancesError } = useFetch('/api/account-balances');
 
-  // Use useFetch to handle the transfer (POST request)
-  const { data: transferResult, loading: transferLoading, error: transferError } = useFetch('/api/quick-transfer', transferOptions);
-
-  // Handle Transfer button click and initiate POST request via useFetch
-  const handleTransfer = () => {
+  // Handle Transfer button click and initiate POST request manually
+  const handleTransfer = async () => {
     if (!fromAccountId || !toAccountId || !amount) {
       alert('Please fill in all fields.');
       return;
     }
-    
+  
     const fromAccount = availableBalances.find(account => account.accountId === fromAccountId);
-    if (fromAccount && fromAccount.availableBalance < amount) {
+    const availableBalance = parseFloat(fromAccount.availableBalance.replace(/[^\d.-]/g, ''));
+    
+    if (availableBalance < parseFloat(amount)) {
       alert('Insufficient balance.');
       return;
     }
 
-    setTransferOptions({
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: {
-        fromAccountId,
-        toAccountId,
-        amount: parseFloat(amount), // Ensure amount is a float
-      },
-    });
+    setTransferLoading(true); // Set loading state
+    try {
+      const response = await fetchData('/api/quick-transfer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          fromAccountId,
+          toAccountId,
+          amount: parseFloat(amount), // Ensure amount is a float
+        },
+      });
+      setTransferResult(response); // Set the result from the transfer
+      setTransferError(null); // Clear previous errors
+    } catch (error) {
+      setTransferError('Error in response'); // Set an error message
+      setTransferResult(null); // Clear previous results
+    } finally {
+      setTransferLoading(false); // Turn off loading state
+    }
   };
 
   return (
