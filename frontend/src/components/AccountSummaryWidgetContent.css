@@ -49,3 +49,42 @@
   padding: 12px;
   border: 1px solid #000;
 }
+
+/* Dark Mode for Account Dropdown */
+body.dark-mode .account-dropdown label {
+  color: #ffffff; /* White text for labels in dark mode */
+}
+
+body.dark-mode .account-dropdown select {
+  background-color: #444444; /* Darker background for the dropdown */
+  color: #ffffff; /* White text for the dropdown */
+  border: 1px solid #666666; /* Light border for better contrast */
+}
+
+/* Dark Mode for Account Summary Table */
+body.dark-mode .account-summary-table {
+  background-color: #2b2b2b; /* Darker table background */
+  border: 2px solid #444444; /* Dark border for the table */
+}
+
+body.dark-mode .account-summary-table td, 
+body.dark-mode .account-summary-table th {
+  background-color: #333333; /* Darker background for table cells */
+  color: #ffffff; /* White text in the table */
+  border: 1px solid #555555; /* Light border for table cells */
+}
+
+body.dark-mode .account-summary-table tr:nth-child(even) {
+  background-color: #3a3a3a; /* Alternate row background color */
+}
+
+body.dark-mode .account-summary-table strong {
+  color: #00bcd4; /* Lighter blue for strong text in dark mode */
+}
+
+body.dark-mode .account-summary-table td[colspan="2"] {
+  background-color: #444444; /* Darker background for colspan cells */
+  font-weight: bold;
+  color: #ffffff; /* White text for the colspan cells */
+  border: 1px solid #666666; /* Light border for colspan cells */
+}

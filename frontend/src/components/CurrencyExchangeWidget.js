@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
+import "./CurrencyExchangeWidget.css";
 
 const CurrencyExchangeWidget = () => {
   const [fromCurrency, setFromCurrency] = useState("EUR"); // Default base currency
@@ -38,7 +39,7 @@ const CurrencyExchangeWidget = () => {
   const filteredFavoriteCurrencies = favoriteCurrencies.filter((currency) => currency !== fromCurrency);
 
   return (
-    <div className="widget-container compact">
+    <div className="widget-container">
       {loadingCurrencies ? (
         <p>Loading currencies...</p>
       ) : (

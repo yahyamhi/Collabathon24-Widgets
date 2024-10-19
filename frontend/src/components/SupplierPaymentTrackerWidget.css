@@ -55,3 +55,43 @@
     margin-top: 20px;
   }
   
+  /* Dark Mode Overrides */
+body.dark-mode .supplier-dropdown label {
+  color: #ffffff; /* Light text color for label */
+}
+
+body.dark-mode .supplier-dropdown select {
+  background-color: #444444; /* Darker background for select dropdown */
+  color: #ffffff; /* White text inside the dropdown */
+  border: 1px solid #666666; /* Light border to ensure visibility */
+}
+
+/* Payment Tracker Table Dark Mode Styling */
+body.dark-mode .payment-tracker-table {
+  background-color: #2b2b2b; /* Darker table background */
+  border: 2px solid #444444; /* Darker border for the table */
+}
+
+body.dark-mode .payment-tracker-table td, 
+body.dark-mode .payment-tracker-table th {
+  background-color: #333333; /* Dark background for cells */
+  color: #ffffff; /* White text color */
+  border: 1px solid #555555; /* Light border for cells */
+}
+
+body.dark-mode .payment-tracker-table th {
+  background-color: #444444; /* Darker background for header */
+  color: #ffffff; /* White text color in header */
+}
+
+body.dark-mode .payment-tracker-table tr:nth-child(even) {
+  background-color: #3a3a3a; /* Alternate row background in dark mode */
+}
+
+body.dark-mode .payment-tracker-table strong {
+  color: #00bcd4; /* Lighter blue for emphasized text in dark mode */
+}
+
+body.dark-mode h3 {
+  color: #ffffff; /* Ensure headers are white in dark mode */
+}

@@ -31,3 +31,29 @@
     color: #333;
   }
   
+  /* Dark Mode for Tax Compliance Table */
+body.dark-mode .tax-compliance-table {
+  background-color: #2b2b2b; /* Darker background for the table */
+  border: 2px solid #444444; /* Darker border for the table */
+}
+
+body.dark-mode .tax-compliance-table th,
+body.dark-mode .tax-compliance-table td {
+  background-color: #333333; /* Dark background for table cells */
+  color: #ffffff; /* White text color for table content */
+  border: 1px solid #555555; /* Lighter border for better contrast */
+}
+
+body.dark-mode .tax-compliance-table th {
+  background-color: #444444; /* Darker background for table headers */
+  font-weight: bold;
+  color: #ffffff; /* White text in headers */
+}
+
+body.dark-mode .tax-compliance-table tr:nth-child(even) {
+  background-color: #3a3a3a; /* Slightly lighter background for even rows */
+}
+
+body.dark-mode .tax-compliance-table td {
+  color: #e0e0e0; /* Light text for regular table cells */
+}

@@ -46,7 +46,7 @@ const BranchFinderWidget = ({ onClose }) => {
   if (cityError) return <p>Error loading cities and streets: {cityError}</p>;
 
   return (
-    <div className="widget-container compact">
+    <div className="widget-container">
       <div className="branch-finder-row">
         <label htmlFor="city-select">City:</label>
         <select id="city-select" value={city} onChange={handleCityChange}>
