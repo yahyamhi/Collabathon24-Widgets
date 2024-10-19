@@ -1,0 +1,50 @@
+/* src/components/ConvAIChatWidget.css */
+
+.convai-chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 250px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2000; /* Increased z-index */
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+.convai-chat-widget.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 50%; /* Occupies 50% of the viewport width */
+    height: 50%; /* Occupies 50% of the viewport height */
+    max-width: 800px;
+    max-height: 800px;
+    z-index: 2000; /* Ensure z-index is maintained */
+  }
+  
+.convai-parent {
+    overflow: visible !important;
+}
+
+  
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+.close-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  

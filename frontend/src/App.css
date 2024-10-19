@@ -10,6 +10,7 @@ body {
 .app-container {
   text-align: center;
   padding: 20px;
+  overflow: visible;
 }
 
 /* Heading Styling */

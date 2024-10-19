@@ -1,12 +1,16 @@
+// src/App.js
+
 import React from 'react';
+import Dashboard from './components/Dashboard';
+import ConvAIChatWidget from './components/ConvAIChatWidget';
 import './App.css';
-import Dashboard from './components/Dashboard'; // Refactored Dashboard component
 
 function App() {
   return (
     <div className="app-container">
-      <h1>Commerzbank Dashboard</h1>
-      <Dashboard /> {/* Add the refactored dashboard component */}
+      <Dashboard />
+      {/* Move ConvAIChatWidget here */}
+      <ConvAIChatWidget />
     </div>
   );
 }
