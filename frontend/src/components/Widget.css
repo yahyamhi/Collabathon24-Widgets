@@ -598,3 +598,45 @@
   text-align: center;
   border-radius: 5px;
 }
+
+.dark-mode p, 
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode label, 
+.dark-mode input, 
+.dark-mode select, 
+.dark-mode option {
+  color: #ffffff; /* Ensure that all text remains visible */
+}
+
+/* Dark Mode */
+body.dark-mode .widget-container {
+  background-color: #1e1e1e;
+  color: #e0e0e0; /* Lighter text for all content */
+}
+
+/* Override for specific blue-colored texts */
+body.dark-mode .widget-container h2, 
+body.dark-mode .widget-container p, 
+body.dark-mode .widget-container label, 
+body.dark-mode .widget-container select, 
+body.dark-mode .widget-container option {
+  color: #ffffff; /* Ensure text is white in dark mode */
+}
+
+/* Override bluish color specifically */
+body.dark-mode .widget-container .blue-text {
+  color: #ffffff; /* Replace with white color in dark mode */
+}
+
+/* Specific for elements like Outstanding Payments and Payment History */
+body.dark-mode .widget-container .outstanding-payments,
+body.dark-mode .widget-container .payment-history {
+  color: #ffffff !important; /* Force text to white in dark mode */
+}
+
+/* If bluish text appears in links */
+body.dark-mode a {
+  color: #00bcd4; /* Lighter blue for links in dark mode */
+}
+
