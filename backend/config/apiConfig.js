@@ -11,4 +11,7 @@ const apiConfig = {
   baseUrl: process.env.BASE_URL_SANDBOX,
 };
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 module.exports = apiConfig;

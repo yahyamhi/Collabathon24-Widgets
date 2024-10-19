@@ -9,6 +9,7 @@ import AccountSummaryWidgetContent from './AccountSummaryWidgetContent';
 import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget'; // Import the Supplier Payment Tracker Widget
 import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
+import TaxComplianceOverviewWidget from './TaxComplianceOverviewWidget';
 
 function Dashboard() {
   const initialWidgets = [    
@@ -18,6 +19,7 @@ function Dashboard() {
     { id: 'supplierPayment', title: 'Supplier Payment Tracker', visible: true, description: 'Track payments to key suppliers and outstanding invoices' }, // Supplier Payment Tracker Widget
     { id: 'branchFinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
     { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' }, // Added CashFlowWidget
+    { id: 'taxCompliance', title: 'Tax Compliance Overview', visible: true, description: 'Summary of corporate tax obligations' },
   ];
 
   const proTips = [
@@ -358,6 +360,8 @@ function Dashboard() {
                           <AccountSummaryWidgetContent />
                         ) : widget.id === 'quickTransfer' ? (
                           <QuickTransferWidget />
+                        ) : widget.id === 'taxCompliance' ? (
+                          <TaxComplianceOverviewWidget />
                         ) : widget.id === 'supplierPayment' ? ( // Supplier Payment Tracker Widget
                           <SupplierPaymentTrackerWidget />
                         ) : (
