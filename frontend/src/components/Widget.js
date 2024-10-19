@@ -40,39 +40,59 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
     <div
       className={`widget-container ${isMaximized ? 'widget-maximized' : ''} ${fontSizeClass}`}
     >
-      <h2>{title}</h2>
+      {/* Widget Header */}
+      <div className="widget-header">
+        <h2>{title}</h2>
 
+        <div className="widget-buttons">
+  <button
+    className="widget-button widget-info"
+    onClick={handleInfo}
+    title="More Info"
+  >
+    ℹ️
+  </button>
+  <button
+    className="widget-button widget-maximize"
+    onClick={handleMaximize}
+    title={isMaximized ? "Restore" : "Maximize"}  // Updated title dynamically
+  >
+    {isMaximized ? '⤡' : '⤢'}
+  </button>
+  <button
+    className="widget-button widget-share"
+    onClick={shareWidget}
+    title="Share Widget"
+  >
+    🔗
+  </button>
+  {!isMaximized && (
+    <button
+      className="widget-button widget-close-button"
+      onClick={onClose}
+      title="Remove Widget"
+    >
+      x
+    </button>
+  )}
+</div>
+
+
+      </div>
+
+      {/* Info Box */}
       {showInfo && (
         <div className="widget-description">
           {description || 'No description provided.'}
         </div>
       )}
 
+      {/* Widget Content */}
       <div className="widget-content">
         {React.Children.map(children, (child) =>
           React.isValidElement(child)
             ? React.cloneElement(child, { isMaximized })
             : child
-        )}
-      </div>
-
-      <div className="widget-buttons">
-        <button className="widget-button widget-info" onClick={handleInfo}>
-          ℹ️
-        </button>
-        <button
-          className="widget-button widget-maximize"
-          onClick={handleMaximize}
-        >
-          {isMaximized ? '⤡' : '⤢'}
-        </button>
-        <button className="widget-button widget-share" onClick={shareWidget}>
-          🔗
-        </button>
-        {!isMaximized && (
-          <button className="widget-button widget-close-button" onClick={onClose}>
-            x
-          </button>
         )}
       </div>
 
