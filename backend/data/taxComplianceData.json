@@ -1,0 +1,9 @@
+{
+    "taxObligations": [
+      { "id": "TAX001", "type": "VAT Return", "dueDate": "2024-11-01", "amount": "15000", "status": "Pending" },
+      { "id": "TAX002", "type": "Corporate Tax Filing", "dueDate": "2024-12-15", "amount": "50000", "status": "Pending" },
+      { "id": "TAX003", "type": "Quarterly Tax Return", "dueDate": "2024-10-30", "amount": "25000", "status": "Filed" },
+      { "id": "TAX004", "type": "Annual Tax Return", "dueDate": "2025-01-31", "amount": "100000", "status": "Pending" }
+    ]
+  }
+  

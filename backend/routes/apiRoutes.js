@@ -5,6 +5,7 @@ const accountController = require('../controller/accountController');
 const cashFlowController = require('../controller/cashFlowController'); // Import the controller
 const transferController = require('../controller/transferController'); // Or use transferController if created
 const supplierPaymentController = require('../controller/supplierPaymentController');
+const taxComplianceController = require('../controller/taxComplianceController');
 
 
 const router = express.Router();
@@ -25,5 +26,7 @@ router.post('/quick-transfer', transferController.quickTransfer);
 // Supplier Payment Tracker routes
 router.get('/supplier-payments', supplierPaymentController.getSupplierPayments);
 router.get('/supplier-payments/:supplierId', supplierPaymentController.getSupplierPaymentById);
+// Tax compliance data route
+router.get('/tax-compliance', taxComplianceController.getTaxComplianceData);
 
 module.exports = router;
