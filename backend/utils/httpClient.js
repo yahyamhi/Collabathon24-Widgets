@@ -1,3 +1,4 @@
+// backend/utils/httpClient.js
 const axios = require('axios');
 const config = require('../config/config');
 
@@ -25,13 +26,3 @@ module.exports = {
   commerzbankClient,
   exchangeRateClient,
 };
-// Add a response interceptor
-httpClient.interceptors.response.use(
-  response => response,
-  error => {
-    console.error('HTTP Error:', error.response ? error.response.data : error.message);
-    return Promise.reject(error);
-  }
-);
-
-module.exports = httpClient;
