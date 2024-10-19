@@ -16,12 +16,6 @@ function Dashboard() {
     { id: 'quickTransfer', title: 'Quick Self Transfer', visible: true, description: 'Quickly transfer funds between accounts' },
     { id: 'currencyExchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
     { id: 'supplierPayment', title: 'Supplier Payment Tracker', visible: true, description: 'Track payments to key suppliers and outstanding invoices' }, // Supplier Payment Tracker Widget
-    { id: 'globalTrade', title: 'Global Trade', visible: true, description: 'Shows global trade insights' },
-    { id: 'esgMarkets', title: 'ESG in Emerging Markets', visible: true, description: 'ESG trends and data' },
-    { id: 'iso20022', title: 'ISO 20022', visible: true, description: 'Migration success and insights' },
-    { id: 'consumerLoans', title: 'Consumer Loans', visible: true, description: 'Consumer loan data' },
-    { id: 'corporatePayments', title: 'Corporate Payments', visible: true, description: 'Corporate payment solutions' },
-    { id: 'securitiesInfo', title: 'Securities Information', visible: true, description: 'Securities-related data' },
     { id: 'branchFinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
     { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' }, // Added CashFlowWidget
   ];
