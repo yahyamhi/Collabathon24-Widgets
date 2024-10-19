@@ -509,3 +509,29 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+
+/* Edit and Settings Button Styles */
+.edit-button, .settings-button {
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-button:hover, .settings-button:hover {
+  background-color: #003366;
+}
+
+.edit-button:focus, .settings-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 86, 166, 0.5);
+}

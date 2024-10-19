@@ -9,7 +9,6 @@ import AccountSummaryWidgetContent from './AccountSummaryWidgetContent';
 import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget'; // Import the Supplier Payment Tracker Widget
 import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
-import { FaBell, FaEnvelope } from 'react-icons/fa';
 
 function Dashboard() {
   const initialWidgets = [    
@@ -51,6 +50,19 @@ function Dashboard() {
   const [fontSize, setFontSize] = useState('medium');
   const [widgetsPerRow, setWidgetsPerRow] = useState(3); // Default value
   const [refreshRate, setRefreshRate] = useState(60); // Default to 60 seconds
+  const [mailMessage, setMailMessage] = useState('');
+  const [notificationMessage, setNotificationMessage] = useState('');
+
+  // Functions for mail and notification handling
+  const handleMailClick = () => {
+    setMailMessage('No new messages');
+    setTimeout(() => setMailMessage(''), 3000); // Message disappears after 3 seconds
+  };
+
+  const handleNotificationClick = () => {
+    setNotificationMessage('No new notifications');
+    setTimeout(() => setNotificationMessage(''), 3000); // Message disappears after 3 seconds
+  };
 
   useEffect(() => {
     if (isWidgetMaximized) {
@@ -175,27 +187,67 @@ function Dashboard() {
   return (
     <div className={isWidgetMaximized ? 'dashboard-overlay' : ''}>
       <div className="notification-icons">
-        <FaEnvelope className="icon" />
-        <FaBell className="icon" />
+        <span 
+          className="icon mail-icon" 
+          role="img" 
+          aria-label="mail" 
+          onClick={handleMailClick}
+        >
+          ✉️
+        </span> {/* Mail Emoji */}
+        <span 
+          className="icon notification-icon" 
+          role="img" 
+          aria-label="notifications" 
+          onClick={handleNotificationClick}
+        >
+          🔔
+        </span> {/* Notifications Emoji */}
+        <span 
+          className="icon edit-icon" 
+          role="img" 
+          aria-label="edit" 
+          onClick={togglePopup}
+        >
+          ✏️
+        </span> {/* Edit Emoji */}
+        <span 
+          className="icon settings-icon" 
+          role="img" 
+          aria-label="settings" 
+          onClick={toggleSettings}
+        >
+          ⚙️
+        </span> {/* Settings Emoji */}
       </div>
+
+      {/* Display Mail and Notifications Messages */}
+      {mailMessage && <div className="message-box mail-message">{mailMessage}</div>}
+      {notificationMessage && <div className="message-box notification-message">{notificationMessage}</div>}
 
       {/* Pro Tip Box */}
       <div className="pro-tip-container">
         <span role="img" aria-label="bulb">💡</span> Pro Tip: {currentProTip}
       </div>
+      
       {/* Undo Button */}
       {showUndo && (
         <div className="undo-container">
-          <span>You can add this Widget again later :D</span>
+          <span>You can add this Widget again later 😀</span>
           <button className="undo-button" onClick={handleUndo}>
             Undo
           </button>
         </div>
       )}
 
+      {/* Removed Edit and Settings Buttons with Text */}
+      {/* These have been removed to avoid redundancy */}
+      {/* 
       <button className="edit-button" onClick={togglePopup}>✏️ Edit Widgets</button>
       <button className="settings-button" onClick={toggleSettings}>⚙️ Settings</button>
+      */}
 
+      {/* Widgets Selection Popup */}
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
