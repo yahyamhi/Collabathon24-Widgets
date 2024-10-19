@@ -471,3 +471,41 @@
   margin-left: 5px;
   z-index: 10;
 }
+/* Amount Input Field - Smaller Size */
+.small-input {
+  width: 60% !important;   /* Adjusted to make the input field smaller */
+  padding: 4px !important; /* Reduced padding to make it more compact */
+  border-radius: 4px !important;
+  border: 1px solid #ccc !important;
+  font-size: 14px !important;  /* Adjusted font size to fit the smaller input */
+}
+/* Currency Label */
+.currency-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Styled Transfer Button */
+.styled-transfer-button {
+  padding: 12px 20px;
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  border-radius: 8px; /* Rounded button */
+  font-size: 16px;    /* Slightly larger text for better visibility */
+  font-weight: bold;  /* Make text bold */
+  cursor: pointer;
+  width: 60%;        /* Full-width button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.styled-transfer-button:hover {
+  background-color: #003366;
+  transform: translateY(-2px); /* Small raise effect on hover */
+}
+
+.styled-transfer-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

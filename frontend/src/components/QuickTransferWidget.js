@@ -93,17 +93,21 @@ const QuickTransferWidget = () => {
       {/* Amount Input */}
       <div className="form-group">
         <label htmlFor="amount">Amount:</label>
-        <input
-          type="number"
-          id="amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Enter amount to transfer"
-        />
+        <div className="amount-input-container">
+          <input
+            type="number"
+            id="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter amount to transfer"
+            className="small-input"
+          />
+          <span className="currency-label">  EUR</span> {/* Currency Label */}
+        </div>
       </div>
 
       {/* Transfer Button */}
-      <button className="transfer-button" onClick={handleTransfer} disabled={transferLoading}>
+      <button className="styled-transfer-button" onClick={handleTransfer} disabled={transferLoading}>
         {transferLoading ? 'Transferring...' : 'Transfer'}
       </button>
 
