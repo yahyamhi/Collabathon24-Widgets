@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '../api/apiClient';
 
-const useFetch = (endpoint, queryParams = {}) => {
+const useFetch = (endpoint, options = {}, queryParams = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,7 +13,8 @@ const useFetch = (endpoint, queryParams = {}) => {
     const fullUrl = queryString ? `${endpoint}?${queryString}` : endpoint;
 
     setLoading(true);
-    fetchData(fullUrl)
+
+    fetchData(fullUrl, options)
       .then((data) => {
         if (!data) {
           throw new Error('No data returned from the API');
@@ -29,7 +30,7 @@ const useFetch = (endpoint, queryParams = {}) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [endpoint, JSON.stringify(queryParams)]);
+  }, [endpoint, JSON.stringify(queryParams), JSON.stringify(options)]);
 
   return { data, loading, error };
 };

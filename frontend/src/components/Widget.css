@@ -169,3 +169,104 @@
   position: relative;
   height: 300px;
 }
+
+/* Quick Transfer Widget Styles */
+
+.account-balances {
+  margin-bottom: 20px;
+}
+
+.account-balances h3 {
+  font-size: 16px;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.account-balances ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.account-balances li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #003366;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.transfer-button {
+  padding: 10px 20px;
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.transfer-button:hover {
+  background-color: #003366;
+}
+
+.transfer-result, .error {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.transfer-result {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+.quick-transfer-widget .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quick-transfer-widget label {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.quick-transfer-widget select, 
+.quick-transfer-widget input {
+  flex: 2;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.quick-transfer-widget .transfer-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.quick-transfer-widget .transfer-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
