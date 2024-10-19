@@ -1,12 +1,10 @@
-const apiConfig = require('../config/apiConfig');
-const httpClient = require('../utils/httpClient');
+const { commerzbankClient } = require('../utils/httpClient');
 
 const branchFinderService = {
   getBranches: async (city, street, type) => {
     try {
-      const response = await httpClient.get(`${apiConfig.baseUrl}/branches-api/1/v1/geosearch/city_street`, {
+      const response = await commerzbankClient.get('/branches-api/1/v1/geosearch/city_street', {
         params: { city, street, type }, // Added type parameter
-        headers: apiConfig.headers,
       });
       return response.data;
     } catch (error) {

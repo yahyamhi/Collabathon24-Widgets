@@ -71,3 +71,28 @@
     background-color: #003366;
   }
   
+
+ /* Swap Button Styling */
+.swap-button {
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.swap-button:hover {
+  background-color: #003366;
+}
+
+/* Align the exchange rates list to the left */
+.favorite-exchange-rates {
+  text-align: left;
+  list-style-position: inside; /* Ensures the bullet points stay within the text */
+}
+
+.favorite-exchange-rates li {
+  margin-bottom: 5px; /* Adds space between the items for better readability */
+}

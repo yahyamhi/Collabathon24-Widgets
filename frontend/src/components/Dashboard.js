@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Widget from './Widget';
 import BranchFinderContent from './BranchFinderContent';
+import CurrencyExchangeWidget from './CurrencyExchangeWidget';
 import GenericWidgetContent from './GenericWidgetContent';
 import './Dashboard.css';
 
 function Dashboard() {
   const initialWidgets = [
+    { id: 'currencyExchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
     { id: 'globalTrade', title: 'Global Trade', visible: true, description: 'Shows global trade insights' },
     { id: 'esgMarkets', title: 'ESG in Emerging Markets', visible: true, description: 'ESG trends and data' },
     { id: 'iso20022', title: 'ISO 20022', visible: true, description: 'Migration success and insights' },
@@ -158,6 +160,8 @@ function Dashboard() {
               >
                 {widget.id === 'branchFinder' ? (
                   <BranchFinderContent />
+                ) : widget.id === 'currencyExchange' ? (
+                  <CurrencyExchangeWidget />
                 ) : (
                   <GenericWidgetContent endpoint={`/widget-data/${widget.id}`} />
                 )}

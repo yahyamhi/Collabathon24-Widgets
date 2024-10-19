@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '../api/apiClient';
 
-const useFetch = (endpoint) => {
+const useFetch = (endpoint, queryParams = {}) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);  // Set to false by default
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!endpoint) return;  // If endpoint is not defined, don't trigger fetch
+    if (!endpoint) return;
+
+    const queryString = new URLSearchParams(queryParams).toString();
+    const fullUrl = queryString ? `${endpoint}?${queryString}` : endpoint;
 
     setLoading(true);
-    fetchData(endpoint)
+    fetchData(fullUrl)
       .then((data) => {
         if (!data) {
           throw new Error('No data returned from the API');
@@ -26,7 +29,7 @@ const useFetch = (endpoint) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [endpoint]);
+  }, [endpoint, JSON.stringify(queryParams)]);
 
   return { data, loading, error };
 };
