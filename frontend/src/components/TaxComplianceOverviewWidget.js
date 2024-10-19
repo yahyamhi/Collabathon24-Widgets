@@ -8,7 +8,6 @@ const TaxComplianceOverviewWidget = () => {
 
   return (
     <div>
-      <h3>Tax Compliance Overview</h3>
       {loading ? (
         <p>Loading tax compliance data...</p>
       ) : error ? (
