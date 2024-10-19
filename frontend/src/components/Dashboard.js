@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Widget from './Widget';
 import BranchFinderContent from './BranchFinderContent';
 import CurrencyExchangeWidget from './CurrencyExchangeWidget';
+import CashFlowWidget from './CashFlowWidget'; // Import the CashFlowWidget
 import GenericWidgetContent from './GenericWidgetContent';
 import './Dashboard.css';
 
@@ -15,6 +16,7 @@ function Dashboard() {
     { id: 'corporatePayments', title: 'Corporate Payments', visible: true, description: 'Corporate payment solutions' },
     { id: 'securitiesInfo', title: 'Securities Information', visible: true, description: 'Securities-related data' },
     { id: 'branchFinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
+    { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' }, // Added CashFlowWidget
   ];
 
   const [widgets, setWidgets] = useState(initialWidgets);
@@ -36,8 +38,6 @@ function Dashboard() {
     };
   }, [isWidgetMaximized]);
 
-  
-
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -50,7 +50,6 @@ function Dashboard() {
     document.body.classList.remove('small-font', 'medium-font', 'large-font');
     document.body.classList.add(`${fontSize}-font`);
   }, [fontSize]);
-
 
   const handleWidgetSelectionChange = (id, isChecked) => {
     setWidgets((prevWidgets) =>
@@ -162,6 +161,8 @@ function Dashboard() {
                   <BranchFinderContent />
                 ) : widget.id === 'currencyExchange' ? (
                   <CurrencyExchangeWidget />
+                ) : widget.id === 'cashFlow' ? ( // Added rendering for CashFlowWidget
+                  <CashFlowWidget />
                 ) : (
                   <GenericWidgetContent endpoint={`/widget-data/${widget.id}`} />
                 )}
