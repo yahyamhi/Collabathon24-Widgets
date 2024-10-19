@@ -1,4 +1,3 @@
-// Simplified UI version of CurrencyExchangeWidget
 import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 
@@ -33,20 +32,23 @@ const CurrencyExchangeWidget = () => {
   };
 
   // Preselect favorite currencies for quick display
-  const favoriteCurrencies = ["EUR", "PLN", "USD", "GBP"]; // You can customize this list
+  const favoriteCurrencies = ["EUR", "PLN", "USD", "GBP"]; // EUR included as a favorite
+
+  // Filter out the base currency from the favorite currencies list if it's selected as the base
+  const filteredFavoriteCurrencies = favoriteCurrencies.filter((currency) => currency !== fromCurrency);
 
   return (
-    <div className="widget-container">
+    <div className="widget-container compact">
       {loadingCurrencies ? (
         <p>Loading currencies...</p>
       ) : (
         <div>
           {/* Currency Conversion Section */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
             <select
               value={fromCurrency}
               onChange={(e) => setFromCurrency(e.target.value)}
-              style={{ marginRight: "10px", padding: "5px" }}
+              style={{ marginRight: "5px", padding: "3px" }}
             >
               {supportedCurrencies &&
                 supportedCurrencies.supported_codes.map(([code, name]) => (
@@ -57,14 +59,14 @@ const CurrencyExchangeWidget = () => {
             </select>
 
             {/* Swap Button */}
-            <button className="swap-button" onClick={handleSwap} style={{ margin: "0 10px" }}>
+            <button className="swap-button" onClick={handleSwap} style={{ margin: "0 5px" }}>
                 ⇄
             </button>
 
             <select
               value={toCurrency}
               onChange={(e) => setToCurrency(e.target.value)}
-              style={{ marginLeft: "10px", padding: "5px" }}
+              style={{ marginLeft: "5px", padding: "3px" }}
             >
               {supportedCurrencies &&
                 supportedCurrencies.supported_codes.map(([code, name]) => (
@@ -81,7 +83,7 @@ const CurrencyExchangeWidget = () => {
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              style={{ margin: "10px 0", padding: "5px" }}
+              style={{ margin: "5px 0", padding: "3px" }}
             />
           </div>
 
@@ -98,13 +100,27 @@ const CurrencyExchangeWidget = () => {
           {loadingRates ? (
             <p>Loading rates...</p>
           ) : (
-            <ul className="favorite-exchange-rates">
-              {favoriteCurrencies.map((currency) => (
-                <li key={currency}>
-                  {fromCurrency} to {currency}: {exchangeRates?.conversion_rates?.[currency] || "N/A"}
-                </li>
-              ))}
-            </ul>
+            <table className="exchange-rate-table compact">
+              <thead>
+                <tr>
+                  <th>Currency</th>
+                  <th>Exchange Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredFavoriteCurrencies.map((currency) => (
+                  <tr key={currency}>
+                    <td>{currency}</td>
+                    <td>{exchangeRates?.conversion_rates?.[currency] || "N/A"}</td>
+                  </tr>
+                ))}
+                {/* Base currency row for clarity */}
+                <tr>
+                  <td><strong>{fromCurrency}</strong> (Base Currency)</td>
+                  <td>1.0000</td>
+                </tr>
+              </tbody>
+            </table>
           )}
         </div>
       )}

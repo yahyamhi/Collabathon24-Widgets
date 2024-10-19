@@ -285,3 +285,100 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+/* Standardized Widget Container */
+.widget-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px; /* Reduced padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Compact Mode for Widget */
+.widget-container.compact {
+  padding: 5px; /* Further reduce padding for compact mode */
+}
+
+/* Widget Titles */
+.widget-container h2 {
+  color: #003366;
+  font-size: 16px; /* Reduced font size */
+  margin-bottom: 5px; /* Reduced margin */
+}
+
+/* Currency Exchange Section */
+.widget-container select, .widget-container input {
+  padding: 3px; /* Reduced padding */
+  font-size: 14px; /* Slightly smaller font */
+}
+
+.widget-container label {
+  margin-bottom: 3px;
+}
+
+/* Swap Button */
+.swap-button {
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 3px 6px; /* Reduced padding */
+  cursor: pointer;
+  font-size: 16px; /* Reduced font size */
+}
+
+.swap-button:hover {
+  background-color: #003366;
+}
+
+/* Table for Favorite Exchange Rates */
+.exchange-rate-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  border: 2px solid #000;
+}
+
+.exchange-rate-table.compact {
+  margin-top: 5px; /* Reduced margin */
+}
+
+.exchange-rate-table th, .exchange-rate-table td {
+  padding: 8px; /* Reduced padding */
+  border: 1px solid #000;
+  text-align: left;
+}
+
+.exchange-rate-table th {
+  background-color: #e9f5ff;
+  font-weight: bold;
+  color: #003366;
+}
+
+.exchange-rate-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternating row background */
+}
+
+/* Base Currency Label Styling */
+.base-currency-label {
+  font-weight: bold;
+  color: #0056a6;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.base-currency-label:hover::after {
+  content: 'This is the base currency used for conversion';
+  background-color: #e9f5ff;
+  color: #003366;
+  padding: 5px;
+  border-radius: 3px;
+  position: absolute;
+  font-size: 12px;
+  margin-left: 5px;
+  z-index: 10;
+}
