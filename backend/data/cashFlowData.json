@@ -1,0 +1,40 @@
+{
+    "cashFlows": [
+      {
+        "date": "2023-10-01",
+        "incoming": 50000.00,
+        "outgoing": 30000.00,
+        "currency": "EUR",
+        "liquidityPosition": 20000.00
+      },
+      {
+        "date": "2023-10-02",
+        "incoming": 45000.00,
+        "outgoing": 35000.00,
+        "currency": "EUR",
+        "liquidityPosition": 30000.00
+      },
+      {
+        "date": "2023-10-03",
+        "incoming": 60000.00,
+        "outgoing": 25000.00,
+        "currency": "EUR",
+        "liquidityPosition": 65000.00
+      },
+      {
+        "date": "2023-10-04",
+        "incoming": 55000.00,
+        "outgoing": 40000.00,
+        "currency": "EUR",
+        "liquidityPosition": 80000.00
+      },
+      {
+        "date": "2023-10-05",
+        "incoming": 70000.00,
+        "outgoing": 30000.00,
+        "currency": "EUR",
+        "liquidityPosition": 120000.00
+      }
+    ]
+  }
+  
