@@ -13,5 +13,6 @@ router.get('/exchange-rate', exchangeController.getLatestExchangeRates); // Get 
 router.get('/convert-currency', exchangeController.convertCurrency); // Convert currency using the external API
 // Add the route for account summary
 router.get('/account-summary/:accountId', accountController.getAccountSummary);
+router.get('/account-ids', accountController.getAccountIds);
 
 module.exports = router;
