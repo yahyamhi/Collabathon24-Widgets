@@ -1,40 +1,35 @@
 {
     "cashFlows": [
-      {
-        "date": "2023-10-01",
-        "incoming": 50000.00,
-        "outgoing": 30000.00,
-        "currency": "EUR",
-        "liquidityPosition": 20000.00
-      },
-      {
-        "date": "2023-10-02",
-        "incoming": 45000.00,
-        "outgoing": 35000.00,
-        "currency": "EUR",
-        "liquidityPosition": 30000.00
-      },
-      {
-        "date": "2023-10-03",
-        "incoming": 60000.00,
-        "outgoing": 25000.00,
-        "currency": "EUR",
-        "liquidityPosition": 65000.00
-      },
-      {
-        "date": "2023-10-04",
-        "incoming": 55000.00,
-        "outgoing": 40000.00,
-        "currency": "EUR",
-        "liquidityPosition": 80000.00
-      },
-      {
-        "date": "2023-10-05",
-        "incoming": 70000.00,
-        "outgoing": 30000.00,
-        "currency": "EUR",
-        "liquidityPosition": 120000.00
-      }
+      {"date": "2024-10-01", "incoming": 50000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 20000},
+      {"date": "2024-10-02", "incoming": 45000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 30000},
+      {"date": "2024-10-03", "incoming": 60000, "outgoing": 25000, "currency": "EUR", "liquidityPosition": 65000},
+      {"date": "2024-10-04", "incoming": 55000, "outgoing": 40000, "currency": "EUR", "liquidityPosition": 80000},
+      {"date": "2024-10-05", "incoming": 70000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 120000},
+      {"date": "2024-10-06", "incoming": 80000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 165000},
+      {"date": "2024-10-07", "incoming": 40000, "outgoing": 20000, "currency": "EUR", "liquidityPosition": 185000},
+      {"date": "2024-10-08", "incoming": 30000, "outgoing": 15000, "currency": "EUR", "liquidityPosition": 200000},
+      {"date": "2024-10-09", "incoming": 60000, "outgoing": 40000, "currency": "EUR", "liquidityPosition": 220000},
+      {"date": "2024-10-10", "incoming": 50000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 240000},
+      {"date": "2024-10-11", "incoming": 65000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 270000},
+      {"date": "2024-10-12", "incoming": 55000, "outgoing": 25000, "currency": "EUR", "liquidityPosition": 300000},
+      {"date": "2024-10-13", "incoming": 60000, "outgoing": 45000, "currency": "EUR", "liquidityPosition": 315000},
+      {"date": "2024-10-14", "incoming": 70000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 355000},
+      {"date": "2024-10-15", "incoming": 45000, "outgoing": 20000, "currency": "EUR", "liquidityPosition": 380000},
+      {"date": "2024-10-16", "incoming": 60000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 405000},
+      {"date": "2024-10-17", "incoming": 50000, "outgoing": 25000, "currency": "EUR", "liquidityPosition": 430000},
+      {"date": "2024-10-18", "incoming": 65000, "outgoing": 40000, "currency": "EUR", "liquidityPosition": 455000},
+      {"date": "2024-10-19", "incoming": 60000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 485000},
+      {"date": "2024-10-20", "incoming": 75000, "outgoing": 40000, "currency": "EUR", "liquidityPosition": 520000},
+      {"date": "2024-10-21", "incoming": 80000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 565000},
+      {"date": "2024-10-22", "incoming": 65000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 600000},
+      {"date": "2024-10-23", "incoming": 70000, "outgoing": 25000, "currency": "EUR", "liquidityPosition": 645000},
+      {"date": "2024-10-24", "incoming": 50000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 660000},
+      {"date": "2024-10-25", "incoming": 60000, "outgoing": 40000, "currency": "EUR", "liquidityPosition": 680000},
+      {"date": "2024-10-26", "incoming": 75000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 725000},
+      {"date": "2024-10-27", "incoming": 65000, "outgoing": 35000, "currency": "EUR", "liquidityPosition": 755000},
+      {"date": "2024-10-28", "incoming": 55000, "outgoing": 30000, "currency": "EUR", "liquidityPosition": 780000},
+      {"date": "2024-10-29", "incoming": 70000, "outgoing": 25000, "currency": "EUR", "liquidityPosition": 825000},
+      {"date": "2024-10-30", "incoming": 60000, "outgoing": 40000, "currency": "EUR", "liquidityPosition": 845000}
     ]
   }
   

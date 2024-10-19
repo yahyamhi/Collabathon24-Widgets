@@ -18,10 +18,16 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
   };
 
   // Retrieve current font size class from the body
-  const fontSizeClass = document.body.className.split(' ').find(c => c.includes('-font'));
+  const fontSizeClass = document.body.className
+    .split(' ')
+    .find((c) => c.includes('-font'));
 
   return (
-    <div className={`widget-container ${isMaximized ? 'widget-maximized' : ''} ${fontSizeClass}`}>
+    <div
+      className={`widget-container ${
+        isMaximized ? 'widget-maximized' : ''
+      } ${fontSizeClass}`}
+    >
       <h2>{title}</h2>
 
       {/* Info Description */}
@@ -33,16 +39,32 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
 
       {/* Widget Content */}
       <div className="widget-content">
-        {children}
+        {React.Children.map(children, (child) =>
+          React.isValidElement(child)
+            ? React.cloneElement(child, { isMaximized })
+            : child
+        )}
       </div>
+
+      {/* Set Alerts Button */}
+      {isMaximized && (
+        <button className="set-alerts-button">Set Alerts</button>
+      )}
 
       {/* Widget Buttons */}
       <div className="widget-buttons">
-        <button className="widget-button widget-info" onClick={handleInfo}>ℹ️</button>
-        <button className="widget-button widget-maximize" onClick={handleMaximize}>
+        <button className="widget-button widget-info" onClick={handleInfo}>
+          ℹ️
+        </button>
+        <button
+          className="widget-button widget-maximize"
+          onClick={handleMaximize}
+        >
           {isMaximized ? '⤡' : '⤢'}
         </button>
-        <button className="widget-button widget-close-button" onClick={onClose}>x</button>
+        <button className="widget-button widget-close-button" onClick={onClose}>
+          x
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+/* CashFlowWidget.css */
+
+.cashflow-widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.time-range-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.time-range-selector label {
+  margin: 0 10px;
+}
+
+.chart-container {
+  flex-grow: 1;
+  position: relative;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

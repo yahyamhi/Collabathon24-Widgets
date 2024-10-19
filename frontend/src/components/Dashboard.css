@@ -1,98 +1,91 @@
 /* Popup Overlay */
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Use viewport width */
+  height: 100vh; /* Use viewport height */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px; /* Add padding for smaller screens */
+  box-sizing: border-box;
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px; /* Increase max-width for better visibility */
+  max-height: 90vh; /* Prevent overflow on very tall screens */
+  overflow-y: auto; /* Enable scrolling if content is too tall */
+  box-sizing: border-box;
+}
+.dashboard-overlay {
+  overflow: auto; /* Enable scrolling on the main page */
+}
+
+/* Grid for widgets */
+.grid-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px; /* Adds padding around the grid to prevent widgets from touching screen edges */
+  margin: 0 auto;
+  grid-template-columns: repeat(var(--widgets-per-row), 1fr);
+}
+
+/* Adjust widgets per row on smaller screens */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  /* Popup Content */
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
   .popup-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    text-align: left;
+    padding: 20px;
+    max-width: 100%;
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
   }
   
   .popup-content h3 {
-    color: #003366;
-    margin-bottom: 20px;
+    font-size: 1.5em;
   }
   
   .close-button, .reset-button {
-    background-color: #0056a6;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  .close-button:hover, .reset-button:hover {
-    background-color: #003366;
-  }
-  
-  /* Grid for widgets */
-  .grid-container {
-    display: grid;
-    gap: 20px;
-    padding: 20px;
-    margin: 0 auto;
-    transition: all 0.3s ease; /* Smooth transition for layout changes */
-  }
-  
-  /* Widget Item */
-  .widget-item {
     width: 100%;
+    padding: 15px;
+    font-size: 1em;
   }
-  
-  /* Edit button */
-  .edit-button, .settings-button {
-    padding: 10px 20px;
-    background-color: #0056a6;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    margin-right: 10px;
-  }
-  
-  .edit-button:hover, .settings-button:hover {
-    background-color: #003366;
-  }
-  
-
- /* Swap Button Styling */
-.swap-button {
-  background-color: #0056a6;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 5px 10px;
+}
+.notification-icons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+}
+.notification-icons .icon {
+  font-size: 24px;
+  color: #0056a6;
   cursor: pointer;
-  font-size: 18px;
 }
 
-.swap-button:hover {
-  background-color: #003366;
-}
-
-/* Align the exchange rates list to the left */
-.favorite-exchange-rates {
-  text-align: left;
-  list-style-position: inside; /* Ensures the bullet points stay within the text */
-}
-
-.favorite-exchange-rates li {
-  margin-bottom: 5px; /* Adds space between the items for better readability */
+.notification-icons .icon:hover {
+  color: #003366;
 }

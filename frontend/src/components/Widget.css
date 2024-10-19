@@ -2,11 +2,17 @@
 .widget-container {
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  aspect-ratio: 4 / 4; /* Maintains a 4:3 aspect ratio */
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-content {
+  flex-grow: 1; /* Ensures content area expands to fill available space */
+  overflow: auto;
 }
 
 /* Widget Hover Effect */
@@ -80,15 +86,23 @@
 /* Maximized Widget Style */
 .widget-maximized {
   position: fixed;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%) !important; /* Ensure it stays centered */
-  width: 80%;
-  height: 80%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1000;
   background-color: #ffffff;
   overflow: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.widget-maximized .widget-content {
+  width: 100%;
+  height: calc(100% - 60px); /* Adjust for header/buttons if necessary */
+}
+
+.widget-maximized .chart-container {
+  height: 100%;
 }
 
 /* Widget close button for dynamic widget removal */
@@ -168,4 +182,102 @@
 .chart-container {
   position: relative;
   height: 300px;
+}
+/* Set Alerts Button */
+.set-alerts-button {
+  position: absolute;
+  top: 7px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #0056a6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1010; /* Ensure it appears above other elements */
+}
+
+.set-alerts-button:hover {
+  background-color: #003366;
+}
+
+
+/* Widget Hover Effect */
+.widget-container:hover:not(.widget-maximized) {
+  transform: scale(1.02); /* Only apply scale on hover if it's not maximized */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Widget Titles */
+.widget-container h2 {
+  color: #003366;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Widget Text */
+.widget-container p {
+  color: #333333;
+  font-size: 14px;
+}
+
+/* Widget Buttons Container */
+.widget-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+/* Transparent Button Styling */
+.widget-button {
+  background-color: rgba(255, 255, 255, 0.05); /* Light transparent background */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+  color: #0056a6; /* Icon color */
+  padding: 5px;
+  border-radius: 50%; /* Fully round button */
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;  /* Ensure round size */
+  height: 30px; /* Ensure round size */
+  transition: background-color 0.3s ease;
+}
+
+.widget-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker on hover */
+  color: #003366;
+}
+
+/* Info Button Styling (hover shows description) */
+.widget-info {
+  position: relative;
+}
+
+.widget-info:hover .widget-description {
+  display: block;
+}
+
+.widget-description {
+  margin-top: 10px;
+  background-color: #e9f5ff;
+  color: #003366;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.widget-item {
+  cursor: grab;
+}
+
+.widget-item:active {
+  cursor: grabbing;
+}
+
+.widget-item * {
+  pointer-events: auto;
 }

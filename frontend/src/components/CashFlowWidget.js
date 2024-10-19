@@ -1,13 +1,12 @@
-// frontend/src/components/CashFlowWidget.js
-import React, { useEffect, useState } from 'react';
+// CashFlowWidget.js
+import React, { useEffect, useState, useRef } from 'react';
+import './CashFlowWidget.css';
 import useFetch from '../hooks/useFetch';
-import './Widget.css';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   LineElement,
   PointElement,
-  LineController,
   CategoryScale,
   LinearScale,
   Title,
@@ -18,7 +17,6 @@ import {
 ChartJS.register(
   LineElement,
   PointElement,
-  LineController,
   CategoryScale,
   LinearScale,
   Title,
@@ -26,54 +24,64 @@ ChartJS.register(
   Legend
 );
 
-const CashFlowWidget = () => {
-  const { data, loading, error } = useFetch('/api/cash-flow'); // Fetch data from the API
-  const [chartData, setChartData] = useState(null); // Initialize as null
+const CashFlowWidget = ({ refreshRate = 60, isMaximized }) => {
+  const [timeRange, setTimeRange] = useState('7days');
+  const chartRef = useRef(null);
 
-  // Monitor fetched data
-  useEffect(() => {
-    console.log('Fetched data:', data); // Debugging log to ensure data is fetched correctly
+  const endpoint = '/api/cash-flow';
+  const queryParams = { timeRange };
 
-    if (data && Array.isArray(data)) {
-      // Only proceed if data is available and is an array
-      setChartData({
-        labels: data.map((entry) => entry.date),
-        datasets: [
-          {
-            label: 'Incoming',
-            data: data.map((entry) => entry.incoming),
-            borderColor: 'green',
-            backgroundColor: 'rgba(0, 255, 0, 0.2)',
-            fill: true,
-          },
-          {
-            label: 'Outgoing',
-            data: data.map((entry) => entry.outgoing),
-            borderColor: 'red',
-            backgroundColor: 'rgba(255, 0, 0, 0.2)',
-            fill: true,
-          },
-          {
-            label: 'Liquidity Position',
-            data: data.map((entry) => entry.liquidityPosition),
-            borderColor: 'blue',
-            backgroundColor: 'rgba(0, 0, 255, 0.2)',
-            fill: true,
-          },
-        ],
-      });
-    } else {
-      console.error('Data is either undefined or not an array:', data); // Log if data is missing
-    }
-  }, [data]);
+  const { data: filteredData, loading, error } = useFetch(
+    endpoint,
+    queryParams,
+    refreshRate
+  );
 
-  // Chart options
+  const handleTimeRangeChange = (e) => {
+    setTimeRange(e.target.value);
+  };
+
+  const chartData = React.useMemo(() => {
+    if (!filteredData || filteredData.length === 0) return null;
+
+    return {
+      labels: filteredData.map((entry) => entry.date),
+      datasets: [
+        {
+          label: 'Incoming',
+          data: filteredData.map((entry) => entry.incoming),
+          borderColor: 'green',
+          backgroundColor: 'rgba(0, 255, 0, 0.2)',
+          fill: true,
+        },
+        {
+          label: 'Outgoing',
+          data: filteredData.map((entry) => entry.outgoing),
+          borderColor: 'red',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+          fill: true,
+        },
+        {
+          label: 'Liquidity Position',
+          data: filteredData.map((entry) => entry.liquidityPosition),
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          fill: true,
+        },
+      ],
+    };
+  }, [filteredData]);
+
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Important for responsiveness
     plugins: {
       title: {
         display: true,
-        text: 'Corporate Cash Flow Overview',
+        text: `Corporate Cash Flow Overview - Last ${timeRange}`,
+      },
+      legend: {
+        position: 'top',
       },
     },
     scales: {
@@ -83,19 +91,30 @@ const CashFlowWidget = () => {
     },
   };
 
-  // Render
   return (
-    <div className="widget-container">
-      <h2>Corporate Cash Flow Overview</h2>
-      {loading ? (
-        <p>Loading cash flow data...</p>
-      ) : error ? (
-        <p>Error: {error}</p>
-      ) : chartData ? (
-        <Line data={chartData} options={options} />
-      ) : (
-        <p>No data available.</p>
+    <div className="cashflow-widget">
+      {isMaximized && (
+        <div className="time-range-selector">
+          <label htmlFor="time-range">Select Time Range: </label>
+          <select id="time-range" value={timeRange} onChange={handleTimeRangeChange}>
+            <option value="24hours">Last 24 Hours</option>
+            <option value="7days">Last 7 Days</option>
+            <option value="15days">Last 15 Days</option>
+            <option value="30days">Last 30 Days</option>
+          </select>
+        </div>
       )}
+      <div className="chart-container">
+        {loading ? (
+          <p>Loading data...</p>
+        ) : error ? (
+          <p>Error loading data: {error}</p>
+        ) : chartData ? (
+          <Line ref={chartRef} data={chartData} options={options} />
+        ) : (
+          <p>No data available.</p>
+        )}
+      </div>
     </div>
   );
 };
