@@ -3,6 +3,8 @@ const branchController = require('../controller/branchController');
 const exchangeController = require('../controller/exchangeController');
 const accountController = require('../controller/accountController');
 const cashFlowController = require('../controller/cashFlowController'); // Import the controller
+const transferController = require('../controller/transferController'); // Or use transferController if created
+
 
 const router = express.Router();
 
@@ -15,6 +17,9 @@ router.get('/exchange-rate', exchangeController.getLatestExchangeRates); // Get 
 router.get('/convert-currency', exchangeController.convertCurrency); // Convert currency using the external API
 // Add the route for account summary
 router.get('/account-summary/:accountId', accountController.getAccountSummary);
+router.get('/account-ids', accountController.getAccountIds);
 router.get('/cash-flow', cashFlowController.getCashFlowData);
+router.get('/account-balances', transferController.getAccountBalances);
+router.post('/quick-transfer', transferController.quickTransfer);
 
 module.exports = router;

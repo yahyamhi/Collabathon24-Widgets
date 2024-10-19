@@ -3,14 +3,18 @@ import React, { useState, useEffect } from 'react';
 import Widget from './Widget';
 import BranchFinderContent from './BranchFinderContent';
 import CurrencyExchangeWidget from './CurrencyExchangeWidget';
-import CashFlowWidget from './CashFlowWidget';
+import CashFlowWidget from './CashFlowWidget'; // Import the CashFlowWidget
+import QuickTransferWidget from './QuickTransferWidget'; 
 import GenericWidgetContent from './GenericWidgetContent';
+import AccountSummaryWidgetContent from './AccountSummaryWidgetContent';
 import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
 import { FaBell, FaEnvelope } from 'react-icons/fa';
 
 function Dashboard() {
-  const initialWidgets = [
+  const initialWidgets = [    
+    { id: 'accountSummary', title: 'Account Summary', visible: true, description: 'Displays account balances and term deposits' },
+    { id: 'quickTransfer', title: 'Quick Self Transfer', visible: true, description: 'Quickly transfer funds between accounts' },
     { id: 'currencyExchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
     { id: 'globalTrade', title: 'Global Trade', visible: true, description: 'Shows global trade insights' },
     { id: 'esgMarkets', title: 'ESG in Emerging Markets', visible: true, description: 'ESG trends and data' },
@@ -19,7 +23,7 @@ function Dashboard() {
     { id: 'corporatePayments', title: 'Corporate Payments', visible: true, description: 'Corporate payment solutions' },
     { id: 'securitiesInfo', title: 'Securities Information', visible: true, description: 'Securities-related data' },
     { id: 'branchFinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
-    { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' },
+    { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' }, // Added CashFlowWidget
   ];
 
   const proTips = [
@@ -303,7 +307,13 @@ function Dashboard() {
                           <CurrencyExchangeWidget />
                         ) : widget.id === 'cashFlow' ? (
                           <CashFlowWidget refreshRate={refreshRate} />
-                        ) : (
+                        ) : widget.id === 'accountSummary' ? (
+		          <AccountSummaryWidgetContent endpoint="/api/account-summary" />
+		        ) : widget.id === 'cashFlow' ? (
+		          <CashFlowWidget />
+		        ) : widget.id === 'quickTransfer' ? (
+		          <QuickTransferWidget />
+		        ) : (
                           <GenericWidgetContent
                             endpoint={`/widget-data/${widget.id}`}
                           />
