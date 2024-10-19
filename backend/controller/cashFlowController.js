@@ -1,3 +1,4 @@
+// backend/controller/cashFlowController.js
 const path = require('path');
 const fs = require('fs');
 
@@ -8,7 +9,10 @@ exports.getCashFlowData = async (req, res) => {
   try {
     // Read the JSON file
     const data = fs.readFileSync(dataPath, 'utf8');
-    const cashFlowData = JSON.parse(data).cashFlows;
+    const jsonData = JSON.parse(data);
+
+    const cashFlowData = jsonData.cashFlows;
+    const projections = jsonData.projections;
 
     // Get the timeRange parameter from the request
     const { timeRange } = req.query;
@@ -18,9 +22,6 @@ exports.getCashFlowData = async (req, res) => {
     let days;
 
     switch (timeRange) {
-      case '24hours':
-        days = 1;
-        break;
       case '7days':
         days = 7;
         break;
@@ -30,21 +31,28 @@ exports.getCashFlowData = async (req, res) => {
       case '30days':
         days = 30;
         break;
+      case 'all':
+        days = null;
+        break;
       default:
         days = 7; // Default to 7 days if no valid timeRange is provided
     }
 
-    const startDate = new Date(today);
-    startDate.setDate(today.getDate() - days + 1);
+    const startDate = days
+      ? new Date(today.getFullYear(), today.getMonth(), today.getDate() - days + 1)
+      : null;
 
     // Filter cash flow data to only include records from the past 'n' days
     const filteredData = cashFlowData.filter((entry) => {
       const entryDate = new Date(entry.date);
-      return entryDate >= startDate && entryDate <= today;
+      return !startDate || (entryDate >= startDate && entryDate <= today);
     });
 
-    // Respond with the filtered data
-    res.json(filteredData);
+    // Respond with the filtered data and projections
+    res.json({
+      cashFlows: filteredData,
+      projections: projections,
+    });
   } catch (error) {
     console.error('Error reading cash flow data:', error);
     res.status(500).json({ message: 'Internal server error' });
