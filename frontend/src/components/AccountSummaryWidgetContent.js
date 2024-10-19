@@ -14,7 +14,7 @@ const AccountSummaryWidgetContent = ({ endpoint }) => {
 
   // Fetch account summary dynamically based on selectedAccountId
   const { data, loading, error } = useFetch(
-    selectedAccountId ? `${endpoint}/${selectedAccountId}` : null
+    selectedAccountId ? `/api/account-summary/${selectedAccountId}` : null
   );
 
   // Update selectedAccountId when account IDs are loaded, setting default to '123456' or fallback to the first ID

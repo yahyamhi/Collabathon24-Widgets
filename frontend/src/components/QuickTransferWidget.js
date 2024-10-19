@@ -10,6 +10,7 @@ const QuickTransferWidget = () => {
   const [transferResult, setTransferResult] = useState(null);
   const [transferError, setTransferError] = useState(null);
   const [transferLoading, setTransferLoading] = useState(false);
+  const [notification, setNotification] = useState(null); // State for notifications
 
   // Fetch account balances using useFetch (GET request)
   const { data: availableBalances, loading: balancesLoading, error: balancesError } = useFetch('/api/account-balances');
@@ -17,15 +18,15 @@ const QuickTransferWidget = () => {
   // Handle Transfer button click and initiate POST request manually
   const handleTransfer = async () => {
     if (!fromAccountId || !toAccountId || !amount) {
-      alert('Please fill in all fields.');
+      setNotification({ type: 'error', message: 'Please fill in all fields.' });
       return;
     }
-  
+
     const fromAccount = availableBalances.find(account => account.accountId === fromAccountId);
     const availableBalance = parseFloat(fromAccount.availableBalance.replace(/[^\d.-]/g, ''));
-    
+
     if (availableBalance < parseFloat(amount)) {
-      alert('Insufficient balance.');
+      setNotification({ type: 'error', message: 'Insufficient balance.' });
       return;
     }
 
@@ -44,9 +45,11 @@ const QuickTransferWidget = () => {
       });
       setTransferResult(response); // Set the result from the transfer
       setTransferError(null); // Clear previous errors
+      setNotification({ type: 'success', message: 'Transfer successful!' });
     } catch (error) {
       setTransferError('Error in response'); // Set an error message
       setTransferResult(null); // Clear previous results
+      setNotification({ type: 'error', message: 'Transfer failed. Please try again.' });
     } finally {
       setTransferLoading(false); // Turn off loading state
     }
@@ -54,6 +57,13 @@ const QuickTransferWidget = () => {
 
   return (
     <div className="quick-transfer-widget">
+      
+      {/* Notification Area */}
+      {notification && (
+        <div className={`notification ${notification.type}`}>
+          {notification.message}
+        </div>
+      )}
 
       {/* Sender Account Section */}
       <div className="row">
