@@ -24,9 +24,7 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
 
   return (
     <div
-      className={`widget-container ${
-        isMaximized ? 'widget-maximized' : ''
-      } ${fontSizeClass}`}
+      className={`widget-container ${isMaximized ? 'widget-maximized' : ''} ${fontSizeClass}`}
     >
       <h2>{title}</h2>
 
@@ -62,9 +60,13 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
         >
           {isMaximized ? '⤡' : '⤢'}
         </button>
-        <button className="widget-button widget-close-button" onClick={onClose}>
-          x
-        </button>
+
+        {/* Hide close button when maximized */}
+        {!isMaximized && (
+          <button className="widget-button widget-close-button" onClick={onClose}>
+            x
+          </button>
+        )}
       </div>
     </div>
   );

@@ -89,3 +89,37 @@
 .notification-icons .icon:hover {
   color: #003366;
 }
+
+/* Undo button and text */
+.undo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.undo-button {
+  background-color: #f39c12;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  margin-left: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.undo-button:hover {
+  background-color: #e67e22;
+}
+
+.pro-tip-container {
+  width: 100%;
+  background-color: #f9d71c; /* Cool yellow */
+  color: #333; /* Dark text for contrast */
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

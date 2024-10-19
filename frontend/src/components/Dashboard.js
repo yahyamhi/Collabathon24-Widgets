@@ -22,9 +22,25 @@ function Dashboard() {
     { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' },
   ];
 
+  const proTips = [
+    "At Commerzbank, we care about our Customer's Productivity.",
+    "You can customize your dashboard to suit your preferences!",
+    "Use the currency exchange widget to stay updated on exchange rates.",
+    "Monitor your cash flow in real-time with the cash flow overview.",
+    "Drag and drop widgets to rearrange your dashboard easily.",
+    "Click on the settings icon to adjust widget refresh rates.",
+    "Dark mode is available in the settings for easier viewing.",
+    "Resize your browser to see how the widgets adjust dynamically.",
+    "Edit your widgets by clicking the ✏️ icon to show or hide them.",
+    "Stay informed about global trade insights using the global trade widget.",
+  ];  
+
   const [widgets, setWidgets] = useState(initialWidgets);
+  const [removedWidget, setRemovedWidget] = useState(null); // Store removed widget
+  const [showUndo, setShowUndo] = useState(false); // Toggle undo button
+  const [currentProTip, setCurrentProTip] = useState(proTips[0]); // Current pro tip
   const [showPopup, setShowPopup] = useState(false);
-  const [isWidgetMaximized, setIsWidgetMaximized] = useState(false);
+  const [isWidgetMaximized, setIsWidgetMaximized] = useState(false); // Track whether a widget is maximized
   const [showSettings, setShowSettings] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [fontSize, setFontSize] = useState('medium');
@@ -61,6 +77,15 @@ function Dashboard() {
     document.documentElement.style.setProperty('--widgets-per-row', widgetsPerRow);
   }, [widgetsPerRow]);
 
+  // Update pro tip every 10 seconds
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentProTip(proTips[Math.floor(Math.random() * proTips.length)]);
+    }, 10000); // 10 seconds interval  
+
+    return () => clearInterval(intervalId); // Cleanup interval on unmount
+  }, []);
+
   const handleWidgetSelectionChange = (id, isChecked) => {
     setWidgets((prevWidgets) =>
       prevWidgets.map((widget) =>
@@ -70,19 +95,32 @@ function Dashboard() {
   };
 
   const handleCloseWidget = (id) => {
-    setWidgets((prevWidgets) =>
-      prevWidgets.map((widget) =>
-        widget.id === id ? { ...widget, visible: false } : widget
-      )
-    );
+    const widgetToRemove = widgets.find((widget) => widget.id === id);
+    setRemovedWidget(widgetToRemove);
+    setWidgets((prevWidgets) => prevWidgets.filter((widget) => widget.id !== id));
+    setShowUndo(true); // Show undo button when widget is removed
+
+    // Automatically hide undo button after 5 seconds
+    setTimeout(() => {
+      setShowUndo(false);
+      setRemovedWidget(null);
+    }, 5000);
   };
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+  const handleUndo = () => {
+    if (removedWidget) {
+      setWidgets((prevWidgets) => [...prevWidgets, removedWidget]);
+      setRemovedWidget(null);
+      setShowUndo(false); // Hide undo button after restoration
+    }
   };
 
   const handleMaximize = (isMaximized) => {
     setIsWidgetMaximized(isMaximized);
+  };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
   const toggleSettings = () => {
@@ -115,19 +153,14 @@ function Dashboard() {
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
 
-    // Create a copy of the widgets array
     const updatedWidgets = [...widgets];
-
-    // Extract visible widgets from the main widgets array
     const visibleWidgetIndices = widgets
       .map((widget, index) => (widget.visible ? index : -1))
       .filter((index) => index !== -1);
 
-    // Map the source and destination indices to the indices in the main widgets array
     const sourceWidgetIndex = visibleWidgetIndices[sourceIndex];
     const destinationWidgetIndex = visibleWidgetIndices[destinationIndex];
 
-    // Swap the widgets in the main widgets array
     const [movedWidget] = updatedWidgets.splice(sourceWidgetIndex, 1);
     updatedWidgets.splice(destinationWidgetIndex, 0, movedWidget);
 
@@ -140,6 +173,21 @@ function Dashboard() {
         <FaEnvelope className="icon" />
         <FaBell className="icon" />
       </div>
+
+      {/* Pro Tip Box */}
+      <div className="pro-tip-container">
+        <span role="img" aria-label="bulb">💡</span> Pro Tip: {currentProTip}
+      </div>
+      {/* Undo Button */}
+      {showUndo && (
+        <div className="undo-container">
+          <span>You can add this Widget again later :D</span>
+          <button className="undo-button" onClick={handleUndo}>
+            Undo
+          </button>
+        </div>
+      )}
+
       <button className="edit-button" onClick={togglePopup}>✏️ Edit Widgets</button>
       <button className="settings-button" onClick={toggleSettings}>⚙️ Settings</button>
 
@@ -247,6 +295,7 @@ function Dashboard() {
                         description={widget.description}
                         onClose={() => handleCloseWidget(widget.id)}
                         onMaximize={handleMaximize}
+                        isMaximized={isWidgetMaximized}  // Pass the isMaximized state to hide close button
                       >
                         {widget.id === 'branchFinder' ? (
                           <BranchFinderContent />
