@@ -9,7 +9,9 @@ import AccountSummaryWidgetContent from './AccountSummaryWidgetContent';
 import './Dashboard.css';
 
 function Dashboard() {
-  const initialWidgets = [
+  const initialWidgets = [    
+    { id: 'accountSummary', title: 'Account Summary', visible: true, description: 'Displays account balances and term deposits' },
+    { id: 'quickTransfer', title: 'Quick Self Transfer', visible: true, description: 'Quickly transfer funds between accounts' },
     { id: 'currencyExchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
     { id: 'globalTrade', title: 'Global Trade', visible: true, description: 'Shows global trade insights' },
     { id: 'esgMarkets', title: 'ESG in Emerging Markets', visible: true, description: 'ESG trends and data' },

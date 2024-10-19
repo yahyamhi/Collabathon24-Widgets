@@ -10,7 +10,7 @@ const formatBalanceWithCurrency = (value, currency) => {
 const AccountSummaryWidgetContent = ({ endpoint }) => {
   // Fetch account IDs using useFetch
   const { data: accountIds, loading: accountIdsLoading, error: accountIdsError } = useFetch('/api/account-ids');
-  const [selectedAccountId, setSelectedAccountId] = useState('123456'); // Default to 123456
+  const [selectedAccountId, setSelectedAccountId] = useState(); // Default to 123456
 
   // Fetch account summary dynamically based on selectedAccountId
   const { data, loading, error } = useFetch(
@@ -20,7 +20,7 @@ const AccountSummaryWidgetContent = ({ endpoint }) => {
   // Update selectedAccountId when account IDs are loaded, setting default to '123456' or fallback to the first ID
   useEffect(() => {
     if (accountIds && accountIds.length > 0 && !selectedAccountId) {
-      setSelectedAccountId(accountIds.includes('123456') ? '123456' : accountIds[0]); // Set '123456' if available, otherwise set the first account
+      setSelectedAccountId(accountIds[0]); // Set '123456' if available, otherwise set the first account
     }
   }, [accountIds, selectedAccountId]);
 
