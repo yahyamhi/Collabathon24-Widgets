@@ -2,6 +2,8 @@ const express = require('express');
 const branchController = require('../controller/branchController');
 const exchangeController = require('../controller/exchangeController');
 const accountController = require('../controller/accountController');
+const cashFlowController = require('../controller/cashFlowController'); // Import the controller
+
 const router = express.Router();
 
 // Branch finder routes
@@ -14,5 +16,6 @@ router.get('/convert-currency', exchangeController.convertCurrency); // Convert 
 // Add the route for account summary
 router.get('/account-summary/:accountId', accountController.getAccountSummary);
 router.get('/account-ids', accountController.getAccountIds);
+router.get('/cash-flow', cashFlowController.getCashFlowData);
 
 module.exports = router;
