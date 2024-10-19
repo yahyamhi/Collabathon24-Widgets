@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Widget.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Widget = ({ title, description, onClose, children, onMaximize }) => {
   const [isMaximized, setIsMaximized] = useState(false);
@@ -17,6 +19,17 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
     setShowInfo(!showInfo);
   };
 
+  const shareWidget = () => {
+    const currentUrl = window.location.origin;
+    const shareUrl = `${currentUrl}/widget/${title.toLowerCase().replace(/\s/g, '')}`;
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      toast.success("Widget link copied to clipboard!", {
+        position: "bottom-right", // Use position as a string
+        autoClose: 3000, // Closes after 3 seconds
+      });
+    });
+  };
+
   // Retrieve current font size class from the body
   const fontSizeClass = document.body.className
     .split(' ')
@@ -28,14 +41,12 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
     >
       <h2>{title}</h2>
 
-      {/* Info Description */}
       {showInfo && (
         <div className="widget-description">
           {description || 'No description provided.'}
         </div>
       )}
 
-      {/* Widget Content */}
       <div className="widget-content">
         {React.Children.map(children, (child) =>
           React.isValidElement(child)
@@ -44,12 +55,6 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
         )}
       </div>
 
-      {/* Set Alerts Button */}
-      {isMaximized && (
-        <button className="set-alerts-button">Set Alerts</button>
-      )}
-
-      {/* Widget Buttons */}
       <div className="widget-buttons">
         <button className="widget-button widget-info" onClick={handleInfo}>
           ℹ️
@@ -60,14 +65,17 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
         >
           {isMaximized ? '⤡' : '⤢'}
         </button>
-
-        {/* Hide close button when maximized */}
+        <button className="widget-button widget-share" onClick={shareWidget}>
+          🔗
+        </button>
         {!isMaximized && (
           <button className="widget-button widget-close-button" onClick={onClose}>
             x
           </button>
         )}
       </div>
+      {/* Toast container to display notifications */}
+      <ToastContainer />
     </div>
   );
 };

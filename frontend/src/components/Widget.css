@@ -535,3 +535,15 @@
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 86, 166, 0.5);
 }
+
+.widget-share {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0056a6;
+}
+
+.widget-share:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #003366;
+}
+

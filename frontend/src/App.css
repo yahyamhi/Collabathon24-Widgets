@@ -1,7 +1,7 @@
 /* General Styling */
 body {
   margin: 0;
-  padding-top: 100px; /* Space for the fixed banner */
+  padding-top: 40px; /* Space for the fixed banner */
   font-family: Arial, sans-serif;
   background-color: #f0f2f5;
 }
@@ -42,6 +42,8 @@ body {
 /* Main content of the application */
 .content {
   text-align: center;
+  padding-top: 20px; /* Reduced padding to bring content closer to the header */
+  margin-top: 0; /* Ensure no unnecessary margin is added */
 }
 
 /* Container for the whole app */
