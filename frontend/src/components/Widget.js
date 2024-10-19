@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './Widget.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Widget = ({ title, description, onClose, children, onMaximize }) => {
   const [isMaximized, setIsMaximized] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false); // State to control inline notification
 
   const handleMaximize = () => {
     const newIsMaximized = !isMaximized;
@@ -23,10 +22,12 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
     const currentUrl = window.location.origin;
     const shareUrl = `${currentUrl}/widget/${title.toLowerCase().replace(/\s/g, '')}`;
     navigator.clipboard.writeText(shareUrl).then(() => {
-      toast.success("Widget link copied to clipboard!", {
-        position: "bottom-right", // Use position as a string
-        autoClose: 3000, // Closes after 3 seconds
-      });
+      setShowCopiedMessage(true); // Show inline message when link is copied
+
+      // Automatically hide the message after 3 seconds
+      setTimeout(() => {
+        setShowCopiedMessage(false);
+      }, 3000);
     });
   };
 
@@ -39,14 +40,54 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
     <div
       className={`widget-container ${isMaximized ? 'widget-maximized' : ''} ${fontSizeClass}`}
     >
-      <h2>{title}</h2>
+      {/* Widget Header */}
+      <div className="widget-header">
+        <h2>{title}</h2>
 
+        <div className="widget-buttons">
+  <button
+    className="widget-button widget-info"
+    onClick={handleInfo}
+    title="More Info"
+  >
+    ℹ️
+  </button>
+  <button
+    className="widget-button widget-maximize"
+    onClick={handleMaximize}
+    title={isMaximized ? "Restore" : "Maximize"}  // Updated title dynamically
+  >
+    {isMaximized ? '⤡' : '⤢'}
+  </button>
+  <button
+    className="widget-button widget-share"
+    onClick={shareWidget}
+    title="Share Widget"
+  >
+    🔗
+  </button>
+  {!isMaximized && (
+    <button
+      className="widget-button widget-close-button"
+      onClick={onClose}
+      title="Remove Widget"
+    >
+      x
+    </button>
+  )}
+</div>
+
+
+      </div>
+
+      {/* Info Box */}
       {showInfo && (
         <div className="widget-description">
           {description || 'No description provided.'}
         </div>
       )}
 
+      {/* Widget Content */}
       <div className="widget-content">
         {React.Children.map(children, (child) =>
           React.isValidElement(child)
@@ -55,27 +96,12 @@ const Widget = ({ title, description, onClose, children, onMaximize }) => {
         )}
       </div>
 
-      <div className="widget-buttons">
-        <button className="widget-button widget-info" onClick={handleInfo}>
-          ℹ️
-        </button>
-        <button
-          className="widget-button widget-maximize"
-          onClick={handleMaximize}
-        >
-          {isMaximized ? '⤡' : '⤢'}
-        </button>
-        <button className="widget-button widget-share" onClick={shareWidget}>
-          🔗
-        </button>
-        {!isMaximized && (
-          <button className="widget-button widget-close-button" onClick={onClose}>
-            x
-          </button>
-        )}
-      </div>
-      {/* Toast container to display notifications */}
-      <ToastContainer />
+      {/* Inline notification for link copied */}
+      {showCopiedMessage && (
+        <div className="copy-notification">
+          {`${title} link copied to clipboard!`}
+        </div>
+      )}
     </div>
   );
 };

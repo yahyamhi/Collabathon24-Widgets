@@ -28,5 +28,6 @@ router.get('/supplier-payments', supplierPaymentController.getSupplierPayments);
 router.get('/supplier-payments/:supplierId', supplierPaymentController.getSupplierPaymentById);
 // Tax compliance data route
 router.get('/tax-compliance', taxComplianceController.getTaxComplianceData);
+router.get('/cities', branchController.getCitiesAndStreets);
 
 module.exports = router;

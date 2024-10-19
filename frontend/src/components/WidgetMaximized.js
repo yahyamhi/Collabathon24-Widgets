@@ -6,6 +6,7 @@ import CurrencyExchangeWidget from './CurrencyExchangeWidget';
 import CashFlowWidget from './CashFlowWidget';
 import BranchFinderContent from './BranchFinderContent';
 import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget';
+import TaxComplianceOverviewWidget from './TaxComplianceOverviewWidget';
 
 const WidgetMaximized = () => {
   const { id } = useParams(); // Get the widget ID from the route params
@@ -23,8 +24,10 @@ const WidgetMaximized = () => {
         return <CashFlowWidget isMaximized={true} />;
       case 'branchfinder':
         return <BranchFinderContent isMaximized={true} />;
-      case 'supplierpaymenttracker':
-        return <SupplierPaymentTrackerWidget isMaximized={true} />;
+        case 'supplierpaymenttracker':
+          return <SupplierPaymentTrackerWidget isMaximized={true} />;
+        case 'taxcomplianceoverview':
+        return <TaxComplianceOverviewWidget isMaximized={true} />;
       default:
         return <p>Unknown Widget</p>;
     }

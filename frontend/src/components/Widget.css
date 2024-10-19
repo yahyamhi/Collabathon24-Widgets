@@ -10,6 +10,37 @@
   flex-direction: column;
 }
 
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #003366;
+  border-bottom: 1px solid #ddd;
+}
+
+.widget-container .widget-header h2 {
+  color: white; /* This ensures the color will be white */
+  font-size: 18px;
+  margin: 0;
+}
+
+.widget-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.widget-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.widget-button:hover {
+  color: #0056a6;
+}
+
 .widget-content {
   flex-grow: 1; /* Ensures content area expands to fill available space */
   overflow: auto;
@@ -60,9 +91,21 @@
   transition: background-color 0.3s ease;
 }
 
+.widget-buttons .widget-button {
+  color: white; /* Change the icon color to white */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.widget-buttons .widget-button:hover {
+  color: #eaff00; /* Change the color when hovered */
+}
+
 .widget-button:hover {
   background-color: rgba(0, 0, 0, 0.1); /* Slightly darker on hover */
-  color: #003366;
+  color: #ffffff;
 }
 
 /* Info Button Styling (hover shows description) */
@@ -547,3 +590,11 @@
   color: #003366;
 }
 
+.copy-notification {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
