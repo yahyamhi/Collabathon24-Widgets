@@ -10,6 +10,7 @@ import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget'; // Im
 import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
 import TaxComplianceOverviewWidget from './TaxComplianceOverviewWidget';
+import ExpensePieChartWidget from './ExpensePieChartWidget';
 
 function Dashboard() {
   const initialWidgets = [    
@@ -20,6 +21,7 @@ function Dashboard() {
     { id: 'branchFinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
     { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' }, // Added CashFlowWidget
     { id: 'taxCompliance', title: 'Tax Compliance Overview', visible: true, description: 'Summary of corporate tax obligations' },
+    { id: 'expensePieChart', title: 'Expense Pie Chart', visible: true, description: 'Visualize expenses by category in a pie chart.' },
   ];
 
   const proTips = [
@@ -364,6 +366,8 @@ function Dashboard() {
                           <TaxComplianceOverviewWidget />
                         ) : widget.id === 'supplierPayment' ? ( // Supplier Payment Tracker Widget
                           <SupplierPaymentTrackerWidget />
+                        ) : widget.id === 'expensePieChart' ? (
+                          <ExpensePieChartWidget />
                         ) : (
                           <GenericWidgetContent
                             endpoint={`/widget-data/${widget.id}`}

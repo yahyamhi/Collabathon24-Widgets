@@ -3,6 +3,7 @@ const config = require('./config/config');
 const cors = require('cors');
 const widgetRoutes = require('./routes/widget');
 const apiRoutes = require('./routes/apiRoutes');
+const expenseRoutes = require('./routes/expenseRoutes');
 
 const app = express();
 app.use(cors());
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 // Use widget and API routes
 app.use('/', widgetRoutes);
 app.use('/api', apiRoutes);
+app.use('/api', expenseRoutes);
 
 const PORT = config.port || 5000;
 app.listen(PORT, () => {
