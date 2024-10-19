@@ -308,12 +308,12 @@ function Dashboard() {
                         ) : widget.id === 'cashFlow' ? (
                           <CashFlowWidget refreshRate={refreshRate} />
                         ) : widget.id === 'accountSummary' ? (
-		          <AccountSummaryWidgetContent endpoint="/api/account-summary" />
-		        ) : widget.id === 'cashFlow' ? (
-		          <CashFlowWidget />
-		        ) : widget.id === 'quickTransfer' ? (
-		          <QuickTransferWidget />
-		        ) : (
+                          <AccountSummaryWidgetContent endpoint="/api/account-summary" />
+                        ) : widget.id === 'cashFlow' ? (
+                          <CashFlowWidget />
+                        ) : widget.id === 'quickTransfer' ? (
+                          <QuickTransferWidget />
+                        ) : (
                           <GenericWidgetContent
                             endpoint={`/widget-data/${widget.id}`}
                           />
