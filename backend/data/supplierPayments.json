@@ -1,0 +1,51 @@
+{
+    "suppliers": [
+      {
+        "supplierId": "SUP001",
+        "supplierName": "Supplier A",
+        "outstandingInvoices": [
+          {
+            "invoiceId": "INV001",
+            "amount": 1000,
+            "dueDate": "2024-10-25",
+            "status": "Pending"
+          },
+          {
+            "invoiceId": "INV002",
+            "amount": 1500,
+            "dueDate": "2024-10-30",
+            "status": "Pending"
+          }
+        ],
+        "paymentHistory": [
+          {
+            "invoiceId": "INV0001",
+            "amount": 2000,
+            "paymentDate": "2024-09-30",
+            "status": "Paid"
+          }
+        ]
+      },
+      {
+        "supplierId": "SUP002",
+        "supplierName": "Supplier B",
+        "outstandingInvoices": [
+          {
+            "invoiceId": "INV003",
+            "amount": 1200,
+            "dueDate": "2024-11-05",
+            "status": "Pending"
+          }
+        ],
+        "paymentHistory": [
+          {
+            "invoiceId": "INV0020",
+            "amount": 3000,
+            "paymentDate": "2024-10-01",
+            "status": "Paid"
+          }
+        ]
+      }
+    ]
+  }
+  
