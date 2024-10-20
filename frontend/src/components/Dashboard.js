@@ -249,22 +249,36 @@ function Dashboard() {
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h3>Select Widgets to Display</h3>
-            {widgets.map((widget) => (
-              <div key={widget.id}>
-                <input
-                  type="checkbox"
-                  id={widget.id}
-                  checked={widget.visible}
-                  onChange={(e) =>
-                    handleWidgetSelectionChange(widget.id, e.target.checked)
-                  }
-                />
-                <label htmlFor={widget.id}>{widget.title}</label>
-              </div>
-            ))}
-            <button className="close-button" onClick={togglePopup}>Close</button>
-          </div>
+  <h3>Select Widgets to Display</h3>
+  <div className="table-container">
+    <table className="widget-table">
+      <tbody>
+        {widgets.map((widget) => (
+          <tr key={widget.id}>
+            <td>
+              {/* Checkbox input with an id */}
+              <input
+                type="checkbox"
+                id={`checkbox-${widget.id}`}  // Unique ID for each checkbox
+                checked={widget.visible}
+                onChange={(e) =>
+                  handleWidgetSelectionChange(widget.id, e.target.checked)
+                }
+              />
+            </td>
+            <td>
+              {/* Label with htmlFor matching the checkbox id */}
+              <label htmlFor={`checkbox-${widget.id}`} className="widget-label">
+                {widget.title}
+              </label>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <button className="close-button" onClick={togglePopup}>Close</button>
+</div>
         </div>
       )}
 
@@ -272,58 +286,66 @@ function Dashboard() {
       {showSettings && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h3>Settings</h3>
+  <h3>Settings</h3>
+  <table className="settings-table">
+    <tbody>
+      <tr>
+        <td>
+          <label htmlFor="darkMode">Dark Mode</label>
+        </td>
+        <td>
+          <input
+            type="checkbox"
+            id="darkMode"
+            checked={darkMode}
+            onChange={handleDarkModeToggle}
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label htmlFor="fontSize">Font Size</label>
+        </td>
+        <td>
+          <select id="fontSize" value={fontSize} onChange={handleFontSizeChange}>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label htmlFor="widgetsPerRow">Widgets per Row</label>
+        </td>
+        <td>
+          <select id="widgetsPerRow" value={widgetsPerRow} onChange={handleWidgetsPerRowChange}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label htmlFor="refreshRate">Data Refresh Rate (seconds)</label>
+        </td>
+        <td>
+          <input
+            type="number"
+            id="refreshRate"
+            value={refreshRate}
+            onChange={handleRefreshRateChange}
+            min="10"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button className="close-button" onClick={toggleSettings}>Close</button>
+</div>
 
-            {/* Dark Mode */}
-            <div>
-              <label htmlFor="darkMode">Dark Mode</label>
-              <input
-                type="checkbox"
-                id="darkMode"
-                checked={darkMode}
-                onChange={handleDarkModeToggle}
-              />
-            </div>
-
-            {/* Font Size */}
-            <div>
-              <label htmlFor="fontSize">Font Size</label>
-              <select id="fontSize" value={fontSize} onChange={handleFontSizeChange}>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </select>
-            </div>
-
-            {/* Number of Widgets per Row */}
-            <div>
-              <label htmlFor="widgetsPerRow">Widgets per Row</label>
-              <select
-                id="widgetsPerRow"
-                value={widgetsPerRow}
-                onChange={handleWidgetsPerRowChange}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-
-            {/* Data Refresh Rate */}
-            <div>
-              <label htmlFor="refreshRate">Data Refresh Rate (seconds)</label>
-              <input
-                type="number"
-                id="refreshRate"
-                value={refreshRate}
-                onChange={handleRefreshRateChange}
-                min="10"
-              />
-            </div>
-
-            <button className="close-button" onClick={toggleSettings}>Close</button>
-          </div>
         </div>
       )}
 
