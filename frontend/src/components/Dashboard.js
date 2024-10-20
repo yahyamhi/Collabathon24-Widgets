@@ -14,15 +14,15 @@ import ExpensePieChartWidget from './ExpensePieChartWidget';
 import Chatbot from './Chatbot';
 
 function Dashboard() {
-  const initialWidgets = [    
-    { id: 'accountSummary', title: 'Account Summary', visible: true, description: 'Displays account balances and term deposits' },
-    { id: 'quickTransfer', title: 'Quick Self Transfer', visible: true, description: 'Quickly transfer funds between accounts' },
-    { id: 'currencyExchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
-    { id: 'supplierPayment', title: 'Supplier Payment Tracker', visible: true, description: 'Track payments to key suppliers and outstanding invoices' }, // Supplier Payment Tracker Widget
-    { id: 'branchFinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
-    { id: 'cashFlow', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' }, // Added CashFlowWidget
-    { id: 'taxCompliance', title: 'Tax Compliance Overview', visible: true, description: 'Summary of corporate tax obligations' },
-    { id: 'expensePieChart', title: 'Expense Pie Chart', visible: true, description: 'Visualize expenses by category in a pie chart.' },
+  const initialWidgets = [
+    { id: 'accountsummary', title: 'Account Summary', visible: true, description: 'Displays account balances and term deposits' },
+    { id: 'quickselftransfer', title: 'Quick Self Transfer', visible: true, description: 'Quickly transfer funds between accounts' },
+    { id: 'currencyexchange', title: 'Currency Exchange', visible: true, description: 'View exchange rates and convert currencies' },
+    { id: 'supplierpaymenttracker', title: 'Supplier Payment Tracker', visible: true, description: 'Track payments to key suppliers and outstanding invoices' }, 
+    { id: 'branchfinder', title: 'Branch Finder', visible: true, description: 'Find branches easily' },
+    { id: 'cashflowoverview', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' },
+    { id: 'taxcomplianceoverview', title: 'Tax Compliance Overview', visible: true, description: 'Summary of corporate tax obligations' },
+    { id: 'expensepiechart', title: 'Expense Pie Chart', visible: true, description: 'Visualize expenses by category in a pie chart.' },
   ];
 
   const proTips = [
@@ -40,7 +40,15 @@ function Dashboard() {
     "Stay informed about global trade insights using the global trade widget.",
   ];  
 
-  const [widgets, setWidgets] = useState(initialWidgets);
+  // Get saved widget state from local storage, or fallback to initialWidgets
+  const savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
+  
+  // Merge saved widgets with initialWidgets to ensure all widgets are displayed
+  const mergedWidgets = initialWidgets.map(widget => 
+    savedWidgets.find(savedWidget => savedWidget.id === widget.id) || widget
+  );
+
+  const [widgets, setWidgets] = useState(mergedWidgets);
   const [removedWidget, setRemovedWidget] = useState(null); // Store removed widget
   const [showUndo, setShowUndo] = useState(false); // Toggle undo button
   const [currentProTip, setCurrentProTip] = useState(proTips[0]); // Current pro tip
@@ -54,7 +62,7 @@ function Dashboard() {
   const [mailMessage, setMailMessage] = useState('');
   const [notificationMessage, setNotificationMessage] = useState('');
 
-  // Functions for mail and notification handling
+  // Functions to handle mail and notifications
   const handleMailClick = () => {
     setMailMessage('No new messages');
     setTimeout(() => setMailMessage(''), 3000); // Message disappears after 3 seconds
@@ -64,6 +72,21 @@ function Dashboard() {
     setNotificationMessage('No new notifications');
     setTimeout(() => setNotificationMessage(''), 3000); // Message disappears after 3 seconds
   };
+
+  // Update the widget list from local storage whenever a change occurs
+  useEffect(() => {
+    const updatedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
+    setWidgets((prevWidgets) =>
+      initialWidgets.map(widget => 
+        updatedWidgets.find(savedWidget => savedWidget.id === widget.id) || widget
+      )
+    );
+  }, []);
+
+  // Save widget state to local storage whenever the widgets state changes
+  useEffect(() => {
+    localStorage.setItem('widgets', JSON.stringify(widgets));
+  }, [widgets]);
 
   useEffect(() => {
     if (isWidgetMaximized) {
@@ -113,9 +136,12 @@ function Dashboard() {
   };
 
   const handleCloseWidget = (id) => {
-    const widgetToRemove = widgets.find((widget) => widget.id === id);
-    setRemovedWidget(widgetToRemove);
-    setWidgets((prevWidgets) => prevWidgets.filter((widget) => widget.id !== id));
+    // Set visibility to false instead of removing it
+    setWidgets((prevWidgets) =>
+      prevWidgets.map((widget) =>
+        widget.id === id ? { ...widget, visible: false } : widget
+      )
+    );
     setShowUndo(true); // Show undo button when widget is removed
 
     // Automatically hide undo button after 5 seconds
@@ -127,7 +153,11 @@ function Dashboard() {
 
   const handleUndo = () => {
     if (removedWidget) {
-      setWidgets((prevWidgets) => [...prevWidgets, removedWidget]);
+      setWidgets((prevWidgets) =>
+        prevWidgets.map((widget) =>
+          widget.id === removedWidget.id ? { ...widget, visible: true } : widget
+        )
+      );
       setRemovedWidget(null);
       setShowUndo(false); // Hide undo button after restoration
     }
@@ -240,13 +270,6 @@ function Dashboard() {
           </button>
         </div>
       )}
-
-      {/* Removed Edit and Settings Buttons with Text */}
-      {/* These have been removed to avoid redundancy */}
-      {/* 
-      <button className="edit-button" onClick={togglePopup}>✏️ Edit Widgets</button>
-      <button className="settings-button" onClick={toggleSettings}>⚙️ Settings</button>
-      */}
 
       {/* Widgets Selection Popup */}
       {showPopup && (
@@ -377,21 +400,21 @@ function Dashboard() {
                         onMaximize={handleMaximize}
                         isMaximized={isWidgetMaximized}  // Pass the isMaximized state to hide close button
                       >
-                        {widget.id === 'branchFinder' ? (
+                        {widget.id === 'branchfinder' ? (
                           <BranchFinderContent />
-                        ) : widget.id === 'currencyExchange' ? (
+                        ) : widget.id === 'currencyexchange' ? (
                           <CurrencyExchangeWidget />
-                        ) : widget.id === 'cashFlow' ? (
+                        ) : widget.id === 'cashflowoverview' ? (
                           <CashFlowWidget refreshRate={refreshRate} />
-                        ) : widget.id === 'accountSummary' ? (
+                        ) : widget.id === 'accountsummary' ? (
                           <AccountSummaryWidgetContent />
-                        ) : widget.id === 'quickTransfer' ? (
+                        ) : widget.id === 'quickselftransfer' ? (
                           <QuickTransferWidget />
-                        ) : widget.id === 'taxCompliance' ? (
+                        ) : widget.id === 'taxcomplianceoverview' ? (
                           <TaxComplianceOverviewWidget />
-                        ) : widget.id === 'supplierPayment' ? ( // Supplier Payment Tracker Widget
+                        ) : widget.id === 'supplierpaymenttracker' ? ( // Supplier Payment Tracker Widget
                           <SupplierPaymentTrackerWidget />
-                        ) : widget.id === 'expensePieChart' ? (
+                        ) : widget.id === 'expensepiechart' ? (
                           <ExpensePieChartWidget />
                         ) : (
                           <GenericWidgetContent
