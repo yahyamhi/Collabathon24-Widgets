@@ -11,6 +11,7 @@ import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
 import TaxComplianceOverviewWidget from './TaxComplianceOverviewWidget';
 import ExpensePieChartWidget from './ExpensePieChartWidget';
+import Chatbot from './Chatbot';
 
 function Dashboard() {
   const initialWidgets = [    
@@ -348,7 +349,7 @@ function Dashboard() {
 
         </div>
       )}
-
+      <Chatbot />
       {/* Widget Grid with Drag-and-Drop */}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="widgets">
