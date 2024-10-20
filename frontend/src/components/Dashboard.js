@@ -28,10 +28,12 @@ function Dashboard() {
   const proTips = [
     "At Commerzbank, we care about our Customer's Productivity.",
     "You can customize your dashboard to suit your preferences!",
+    "Need something? Talk to our AI Chatbot",
     "Use the currency exchange widget to stay updated on exchange rates.",
     "Monitor your cash flow in real-time with the cash flow overview.",
     "Drag and drop widgets to rearrange your dashboard easily.",
     "Click on the settings icon to adjust widget refresh rates.",
+    "Need a new Widget? Talk to our AI Chatbot",
     "Dark mode is available in the settings for easier viewing.",
     "Resize your browser to see how the widgets adjust dynamically.",
     "Edit your widgets by clicking the ✏️ icon to show or hide them.",

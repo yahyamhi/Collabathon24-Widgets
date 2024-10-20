@@ -39,7 +39,7 @@
   position: fixed;
   bottom: 20px; /* Same as chatbot-character */
   right: 20px;
-  width: 300px;
+  width: 370px;
   max-height: 500px;
   background-color: #ffffff;
   border: 1px solid #ccc;
@@ -112,6 +112,8 @@
   overflow-y: auto;
   margin-bottom: 10px;
   max-height: 300px; /* Added back to constrain messages area */
+  display: flex;
+  flex-direction: column;
 }
 
 .message-bubble {
@@ -125,12 +127,12 @@
 }
 
 .message-bubble.user {
-  align-self: flex-end;
+  align-self: end;
   background-color: #d0e7ff; /* Light blue for user messages */
 }
 
 .message-bubble.ai {
-  align-self: flex-start;
+  align-self: start;
   background-color: #ececec; /* Light gray for AI messages */
 }
 
