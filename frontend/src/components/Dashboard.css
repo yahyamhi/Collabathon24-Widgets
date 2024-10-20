@@ -3,6 +3,10 @@
   overflow: auto;
 }
 
+.dashboard-overlay .notification-icons {
+  display: none; /* Hide icons when the dashboard is in overlay (maximized) mode */
+}
+
 .grid-container {
   display: grid;
   gap: 20px;
