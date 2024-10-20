@@ -1,0 +1,208 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400..900&family=Montserrat:wght@400..900&display=swap');
+
+/* Position the character at the bottom of the screen */
+.chatbot-character {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.chatbot-character-inner {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.chatbot-character-inner img {
+  width: 60px; /* Adjust size as needed */
+  height: 60px;
+}
+
+.chatbot-character-inner p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Hover effect */
+.chatbot-character-inner:hover {
+  transform: scale(1.05);
+}
+
+/* Chatbox styles */
+.chatbox {
+  position: fixed;
+  bottom: 20px; /* Same as chatbot-character */
+  right: 20px;
+  width: 300px;
+  max-height: 500px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo and title on top of the chatbox */
+.chatbox-logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.chatbox-logo {
+  width: 40px; /* Adjusted size */
+  height: 40px;
+  margin-right: 8px;
+}
+
+.chatbox-title {
+  font-size: 18px;
+  color: #daa520;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Reset and Close buttons */
+.chatbox-reset-button,
+.chatbox-close-button {
+  position: absolute;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.chatbox-reset-button {
+  left: 10px;
+}
+
+.chatbox-close-button {
+  right: 10px;
+}
+
+.chatbox-reset-button:hover,
+.chatbox-close-button:hover {
+  transform: scale(1.05);
+}
+
+/* Chatbox content */
+.chatbox-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Chat messages */
+.chatbox-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  max-height: 300px; /* Added back to constrain messages area */
+}
+
+.message-bubble {
+  max-width: 80%;
+  margin: 5px 0;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 15px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+  background-color: #d0e7ff; /* Light blue for user messages */
+}
+
+.message-bubble.ai {
+  align-self: flex-start;
+  background-color: #ececec; /* Light gray for AI messages */
+}
+
+/* 'Press T to start talking' prompt */
+.press-t-prompt {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin: 5px;
+}
+
+/* Input field */
+.chatbox-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+  flex-shrink: 0; /* Prevent input field from shrinking */
+}
+
+.chatbox-input input {
+  flex-grow: 1;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.chatbox-input button {
+  background-color: transparent; /* Remove the blue background */
+  color: #0056a6; /* Keep the arrow blue or change as desired */
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  font-size: 30px; /* Increase the size of the arrow */
+}
+
+.chatbox-input button:hover {
+  background-color: transparent; /* No hover background color */
+  transform: scale(1.05);
+}
+
+.chatbox-input input:focus {
+  outline: none;
+}
+
+/* Adjusted send button */
+.send-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* Overall font improvement */
+body,
+.chatbox,
+.chatbox-content,
+.chatbox-messages,
+.message-bubble,
+.chatbox-input input {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .chatbox {
+    width: 90%;
+    right: 5%;
+    bottom: 20px;
+  }
+
+  .chatbot-character {
+    right: 20px;
+    bottom: 80px;
+  }
+}
