@@ -132,3 +132,9 @@ If you'd like to contribute, feel free to fork the repository and submit a pull 
 ## License
 
 This project is licensed under the MIT License. Feel free to use it as needed.
+
+## Added docker support
+docker-compose build
+docker-compose up
+
+This will start both the backend and frontend containers. The backend will be accessible at http://localhost:5000, and the frontend at http://localhost:3000.
