@@ -8,6 +8,7 @@ import BranchFinderContent from './BranchFinderContent';
 import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget';
 import TaxComplianceOverviewWidget from './TaxComplianceOverviewWidget';
 import ExpensePieChartWidget from './ExpensePieChartWidget';
+import StockWidget from './StockWidget'
 
 const WidgetMaximized = () => {
   const { id } = useParams(); // Get the widget ID from the route params
@@ -24,6 +25,7 @@ const WidgetMaximized = () => {
     cashflowoverview: 'Cash Flow Overview',
     taxcomplianceoverview: 'Tax Compliance Overview',
     expensepiechart: 'Expense Pie Chart',
+    stockwidget : 'Stock Widget'
   };
 
   // Check if the widget is already in the dashboard
@@ -79,8 +81,10 @@ const WidgetMaximized = () => {
         return <SupplierPaymentTrackerWidget isMaximized={true} />;
       case 'taxcomplianceoverview':
         return <TaxComplianceOverviewWidget isMaximized={true} />;
-      case 'expensepiechart':
-        return <ExpensePieChartWidget isMaximized={true} />;
+        case 'expensepiechart':
+          return <ExpensePieChartWidget isMaximized={true} />;
+        case 'stockwidget':
+          return <StockWidget isMaximized={true} />;
       default:
         return <p>Unknown Widget</p>;
     }

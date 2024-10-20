@@ -7,6 +7,7 @@ import QuickTransferWidget from './QuickTransferWidget';
 import GenericWidgetContent from './GenericWidgetContent';
 import AccountSummaryWidgetContent from './AccountSummaryWidgetContent';
 import SupplierPaymentTrackerWidget from './SupplierPaymentTrackerWidget'; // Import the Supplier Payment Tracker Widget
+import StockWidget from './StockWidget'
 import './Dashboard.css';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'; // Using @hello-pangea/dnd
 import TaxComplianceOverviewWidget from './TaxComplianceOverviewWidget';
@@ -23,6 +24,7 @@ function Dashboard() {
     { id: 'cashflowoverview', title: 'Cash Flow Overview', visible: true, description: 'Monitor your company’s cash flow and liquidity position.' },
     { id: 'taxcomplianceoverview', title: 'Tax Compliance Overview', visible: true, description: 'Summary of corporate tax obligations' },
     { id: 'expensepiechart', title: 'Expense Pie Chart', visible: true, description: 'Visualize expenses by category in a pie chart.' },
+    { id: 'stockwidget', title: 'Stock Widget', visible: true, description: 'Track stock prices and view details' }
   ];
 
   const proTips = [
@@ -416,6 +418,8 @@ function Dashboard() {
                           <SupplierPaymentTrackerWidget />
                         ) : widget.id === 'expensepiechart' ? (
                           <ExpensePieChartWidget />
+                        ) : widget.id === 'stockwidget' ? (
+                          <StockWidget />
                         ) : (
                           <GenericWidgetContent
                             endpoint={`/widget-data/${widget.id}`}
