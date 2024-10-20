@@ -1,45 +1,16 @@
-/* Popup Overlay */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* Use viewport width */
-  height: 100vh; /* Use viewport height */
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 10px; /* Add padding for smaller screens */
-  box-sizing: border-box;
-}
-
-/* Popup Content */
-.popup-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 500px; /* Increase max-width for better visibility */
-  max-height: 90vh; /* Prevent overflow on very tall screens */
-  overflow-y: auto; /* Enable scrolling if content is too tall */
-  box-sizing: border-box;
-}
+/* General Styles for Dashboard */
 .dashboard-overlay {
-  overflow: auto; /* Enable scrolling on the main page */
+  overflow: auto;
 }
 
-/* Grid for widgets */
 .grid-container {
   display: grid;
   gap: 20px;
-  padding: 20px; /* Adds padding around the grid to prevent widgets from touching screen edges */
+  padding: 20px;
   margin: 0 auto;
   grid-template-columns: repeat(var(--widgets-per-row), 1fr);
 }
 
-/* Adjust widgets per row on smaller screens */
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
@@ -52,33 +23,165 @@
   }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-  .popup-content {
-    padding: 20px;
-    max-width: 100%;
-    border-radius: 0;
-    height: 100vh;
-    max-height: 100vh;
-  }
-  
-  .popup-content h3 {
-    font-size: 1.5em;
-  }
-  
-  .close-button, .reset-button {
-    width: 100%;
-    padding: 15px;
-    font-size: 1em;
-  }
+/* Popup Overlay */
+.popup-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
+
+/* Container for Table */
+.table-container {
+  width: calc(100% - 100px); /* Reduce the width to increase padding */
+  overflow-x: auto;
+  margin: 20px 50px; /* Increase left and right margins to 50px */
+  padding: 0 50px; /* Increase left and right padding to 50px */
+  box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px; /* Slightly increase the maximum width if needed */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Table for widget selection */
+.widget-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto; /* Ensure the table is centered */
+}
+
+.widget-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+/* Last cell in each row to have no bottom border */
+.widget-table tr td:last-child {
+  border-bottom: none;
+}
+
+/* Remove all internal borders from the table */
+.widget-table, .widget-table th, .widget-table td {
+  border: none; /* This removes all borders from the table and its cells */
+}
+
+/* Custom Checkbox Styling */
+.custom-checkbox {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 20px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Close Button */
+.close-button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+}
+
+/* Settings Table Styles */
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0; /* Space above and below the table */
+}
+
+.settings-table td {
+  padding: 8px;
+  text-align: left; /* Align text to the left in all table cells */
+  vertical-align: top; /* Align content to the top of the cells */
+}
+
+.settings-table label {
+  display: block; /* Make label block for better control */
+  margin-bottom: 5px; /* Space between label and input/select */
+}
+
+/* Notification Icons */
 .notification-icons {
   position: fixed;
   top: 20px;
   right: 20px;
   display: flex;
   gap: 15px;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .notification-icons .icon {
@@ -91,6 +194,7 @@
   color: #003366;
 }
 
+/* Message Box for Notifications */
 .message-box {
   position: fixed;
   top: 60px;
@@ -99,36 +203,25 @@
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
+  z-index: 1002;
   font-size: 14px;
   color: #333;
 }
 
-.mail-message {
-  margin-bottom: 8px;
-  border-left: 4px solid #0056a6;
+/* Pro Tip Container */
+.pro-tip-container {
+  width: 100%;
+  background-color: #f9d71c;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
-.notification-message {
-  border-left: 4px solid #f39c12;
-}
-
-.mail-icon, .notification-icon, .edit-icon, .settings-icon {
-  font-size: 24px; /* Consistent size for all icons */
-}
-
-.mail-icon:hover, .notification-icon:hover, .edit-icon:hover, .settings-icon:hover {
-  color: #003366; /* Consistent hover color */
-}
-
-/* Undo button and text */
-.undo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
-}
-
+/* Undo Button */
 .undo-button {
   background-color: #f39c12;
   border: none;
