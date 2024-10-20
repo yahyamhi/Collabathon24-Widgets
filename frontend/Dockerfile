@@ -1,5 +1,5 @@
 # Use Red Hat Alpine-based image for the frontend
-FROM registry.access.redhat.com/ubi8/nodejs-14-minimal
+FROM registry.access.redhat.com/ubi8/nodejs-20-minimal
 
 # Set working directory
 WORKDIR /app
@@ -8,8 +8,14 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install --production
 
+# Adjust permissions for ESLint cache
+RUN chmod -R 777 /app/node_modules/.cache
+
 # Copy the rest of the application code
 COPY . .
+
+# Add missing Babel plugin to prevent build errors
+RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
 
 # Build the React app
 RUN npm run build

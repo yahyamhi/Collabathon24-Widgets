@@ -1,11 +1,11 @@
 # Use Red Hat Alpine-based image for the backend
-FROM registry.access.redhat.com/ubi8/nodejs-14-minimal
+FROM registry.access.redhat.com/ubi8/nodejs-20-minimal
 
 # Set working directory
 WORKDIR /app
 
 # Copy package.json and install dependencies
-COPY package.json ./
+COPY package.json ./ 
 RUN npm install --production
 
 # Copy the rest of the application code
