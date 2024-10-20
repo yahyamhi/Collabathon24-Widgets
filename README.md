@@ -135,6 +135,11 @@ This project is licensed under the MIT License. Feel free to use it as needed.
 
 ## Added docker support
 docker-compose build
+
 docker-compose up
 
 This will start both the backend and frontend containers. The backend will be accessible at http://localhost:5000, and the frontend at http://localhost:3000.
+
+
+## PPT Presentation Link
+https://www.canva.com/design/DAGUGc0nark/Bd25ha2U76j2mgbTytjZbA/edit?utm_content=DAGUGc0nark&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
