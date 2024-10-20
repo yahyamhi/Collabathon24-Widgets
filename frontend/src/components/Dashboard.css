@@ -154,3 +154,20 @@
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+input[type="number"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 12px;
+  width: 10%;
+}
+
+/* Dark mode for the input */
+body.dark-mode input[type="number"] {
+  background-color: #444444; /* Dark background */
+  color: #ffffff; /* Light text color */
+  border: 1px solid #666666; /* Lighter border for better visibility */
+}

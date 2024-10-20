@@ -1,3 +1,19 @@
+/* Font scaling for account-summary-table */
+.widget-container.small-font .account-summary-table th,
+.widget-container.small-font .account-summary-table td {
+  font-size: 12px; /* Small font size */
+}
+
+.widget-container.medium-font .account-summary-table th,
+.widget-container.medium-font .account-summary-table td {
+  font-size: 14px; /* Medium font size (default) */
+}
+
+.widget-container.large-font .account-summary-table th,
+.widget-container.large-font .account-summary-table td {
+  font-size: 16px; /* Large font size */
+}
+
 .account-dropdown {
   display: flex;
   align-items: center;

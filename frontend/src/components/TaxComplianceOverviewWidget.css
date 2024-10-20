@@ -1,3 +1,19 @@
+/* Small, Medium, Large Font Scaling for Tax Compliance Table */
+.widget-container.small-font .tax-compliance-table th,
+.widget-container.small-font .tax-compliance-table td {
+  font-size: 12px; /* Small font size */
+}
+
+.widget-container.medium-font .tax-compliance-table th,
+.widget-container.medium-font .tax-compliance-table td {
+  font-size: 14px; /* Medium font size (default) */
+}
+
+.widget-container.large-font .tax-compliance-table th,
+.widget-container.large-font .tax-compliance-table td {
+  font-size: 16px; /* Large font size */
+}
+
 .tax-compliance-table {
     width: 100%;
     border-collapse: collapse;

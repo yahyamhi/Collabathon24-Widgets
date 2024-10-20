@@ -186,9 +186,22 @@
   transition: background-color 0.2s ease;
 }
 
+.dark-mode .branch-item {
+  background-color: #1e1e1e;
+  color: #000000; /* Ensure all widget text is white */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+
 .branch-item:hover {
   background-color: #f1f1f1;
 }
+
+
+.dark-mode .branch-item:hover {
+  background-color: #494848;
+}
+
 
 /* Branch Finder Row Styling */
 .branch-finder-row {
@@ -410,7 +423,7 @@
 }
 
 .error {
-  color: red;
+  color: rgb(102, 54, 54);
 }
 
 .quick-transfer-widget .row {
@@ -638,5 +651,17 @@ body.dark-mode .widget-container .payment-history {
 /* If bluish text appears in links */
 body.dark-mode a {
   color: #00bcd4; /* Lighter blue for links in dark mode */
+}
+
+/* Currency Label */
+.currency-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333; /* Default color for light mode */
+}
+
+/* Dark Mode */
+body.dark-mode .currency-label {
+  color: #ffffff; /* White color for the label in dark mode */
 }
 
