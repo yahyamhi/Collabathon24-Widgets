@@ -171,3 +171,54 @@ body.dark-mode input[type="number"] {
   color: #ffffff; /* Light text color */
   border: 1px solid #666666; /* Lighter border for better visibility */
 }
+
+.add-to-dashboard-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.add-to-dashboard-button:hover {
+  background-color: #0056b3;
+}
+
+.added-to-dashboard-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px 20px;
+  background-color: #28a745; /* Green to indicate success */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: default; /* Cursor should indicate that it's not clickable */
+  z-index: 10;
+}
+
+.added-to-dashboard-button:hover {
+  background-color: #218838;
+}
+
+.return-to-dashboard-button {
+  position: absolute;
+  bottom: 20px; /* Position near the bottom */
+  left: 20px; /* Adjust based on preference */
+  padding: 10px 20px;
+  background-color: #28a745; /* Green color for clarity */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.return-to-dashboard-button:hover {
+  background-color: #218838;
+}
