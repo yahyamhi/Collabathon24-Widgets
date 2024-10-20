@@ -332,7 +332,7 @@ function Dashboard() {
       </tr>
       <tr>
         <td>
-          <label htmlFor="refreshRate">Data Refresh Rate (seconds)</label>
+          <label htmlFor="refreshRate">Data Refresh Rate (s)</label>
         </td>
         <td>
           <input
