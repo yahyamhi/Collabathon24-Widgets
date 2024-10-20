@@ -1,11 +1,11 @@
 {
-    "expenses": [
-        { "category": "Office Rent", "amount": 3200 },
-        { "category": "Utilities", "amount": 800 },
-        { "category": "Employee Salaries", "amount": 15000 },
-        { "category": "Technology", "amount": 2000 },
-        { "category": "Marketing", "amount": 1200 },
-        { "category": "Travel", "amount": 1500 },
-        { "category": "Legal Services", "amount": 700 }
-    ]
+  "expenses": [
+    { "category": "Office Rent", "amount": 3200, "date": "2024-10-01" },
+    { "category": "Utilities", "amount": 800, "date": "2024-10-02" },
+    { "category": "Employee Salaries", "amount": 15000, "date": "2024-10-05" },
+    { "category": "Technology", "amount": 2000, "date": "2024-10-10" },
+    { "category": "Marketing", "amount": 1200, "date": "2024-10-12" },
+    { "category": "Travel", "amount": 1500, "date": "2024-10-15" },
+    { "category": "Legal Services", "amount": 700, "date": "2024-10-18" }
+  ]
 }
