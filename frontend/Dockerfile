@@ -9,13 +9,10 @@ COPY package.json ./
 RUN npm install --production
 
 # Adjust permissions for ESLint cache
-RUN chmod -R 777 /app/node_modules/.cache
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 
 # Copy the rest of the application code
 COPY . .
-
-# Add missing Babel plugin to prevent build errors
-RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
 
 # Build the React app
 RUN npm run build
